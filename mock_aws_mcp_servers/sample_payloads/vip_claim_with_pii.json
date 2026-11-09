@@ -1,0 +1,8 @@
+{
+  "status": "SUCCESS",
+  "claim_id": "CLM-PII-9001",
+  "customer_tier": "VIP_DIAMOND",
+  "customer_name": "홍길동 (Hong Gil-dong)",
+  "unmasked_customer_note": "환불 계좌 및 본인 확인용 주민등록번호는 880512-1234567 이며, 결제 취소 대상 신용카드 번호는 4532-0151-1283-0366 (연락처: 010-9876-5432, 이메일: vip.customer@cymbal-demo.com) 입니다.",
+  "resolution_status": "PENDING_SDP_REVIEW"
+}

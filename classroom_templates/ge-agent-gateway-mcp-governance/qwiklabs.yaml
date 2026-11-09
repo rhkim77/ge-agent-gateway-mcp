@@ -1,0 +1,8 @@
+entity_type: ClassroomTemplate
+schema_version: 2
+title: "Multi-Cloud AWS MCP & Gemini Enterprise Governance via Agent Registry & Agent Gateway"
+description: "Hands-on classroom template for registering Multi-Cloud AWS FastMCP servers in Google Cloud Agent Registry (us-central1), configuring deterministic Egress Agent Gateway with PSC Network Attachment and Cloud NAT (/32), and enforcing Cloud Armor, IAP, Model Armor, and Sensitive Data Protection (SDP) policies with Gemini Enterprise."
+default_locale: en
+labs:
+  - id: ce-ge-agent-gateway-mcp-governance
+    uri: ../../labs/ce-ge-agent-gateway-mcp-governance

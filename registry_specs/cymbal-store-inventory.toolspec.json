@@ -1,0 +1,72 @@
+{
+  "tools": [
+    {
+      "name": "get_store_inventory",
+      "description": "Retrieve real-time stock quantity and shelf status for a store and product SKU.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "store_id": {
+            "type": "string",
+            "description": "Store identifier (e.g., STORE-SEOUL-001)"
+          },
+          "product_sku": {
+            "type": "string",
+            "description": "Product SKU (e.g., SKU-LUNCHBOX-101)"
+          }
+        },
+        "required": ["store_id", "product_sku"]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "search_product_catalog",
+      "description": "Search the enterprise product catalog by keyword and category.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "description": "Product search keyword"
+          },
+          "category": {
+            "type": "string",
+            "description": "Product category (ALL, FOOD, BEVERAGE, HOUSEHOLD)"
+          }
+        },
+        "required": ["keyword"]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_vip_customer_claim",
+      "description": "Fetch customer claim details by claim_id (CLM-NORMAL-1001 or CLM-PII-9001).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "description": "Claim ticket ID"
+          }
+        },
+        "required": ["claim_id"]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ]
+}

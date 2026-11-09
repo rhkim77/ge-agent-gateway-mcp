@@ -1,0 +1,68 @@
+{
+  "name": "projects/${PROJECT_NUMBER}/locations/global/accessPolicies/${UAP_ACCESS_POLICY_ID}",
+  "displayName": "Cymbal Enterprise Agent Egress Governance Policy (UAP V2)",
+  "details": {
+    "rules": [
+      {
+        "description": "ALLOW registered Google Cloud APIs consolidated endpoint",
+        "effect": "ALLOW",
+        "principals": [
+          "${ALL_AGENTS}",
+          "serviceAccount:service-${PROJECT_NUMBER}@gcp-sa-discoveryengine.iam.gserviceaccount.com",
+          "serviceAccount:service-${PROJECT_NUMBER}@gcp-sa-aiplatform-re.iam.gserviceaccount.com"
+        ],
+        "operation": {
+          "permissions": [
+            "iap.googleapis.com/resources.egressViaIAP"
+          ]
+        },
+        "conditions": {
+          "iap.googleapis.com": {
+            "title": "allow_registered_googleapis",
+            "expression": "(destination.is_registered == true) && (destination.agent_registry.resource_type == 'ENDPOINT')"
+          }
+        }
+      },
+      {
+        "description": "ALLOW registered MCP servers (discovery & non-destructive tools)",
+        "effect": "ALLOW",
+        "principals": [
+          "${ALL_AGENTS}",
+          "serviceAccount:service-${PROJECT_NUMBER}@gcp-sa-discoveryengine.iam.gserviceaccount.com",
+          "serviceAccount:service-${PROJECT_NUMBER}@gcp-sa-aiplatform-re.iam.gserviceaccount.com"
+        ],
+        "operation": {
+          "permissions": [
+            "iap.googleapis.com/resources.egressViaIAP"
+          ]
+        },
+        "conditions": {
+          "iap.googleapis.com": {
+            "title": "allow_registered_mcp_servers",
+            "expression": "(destination.is_registered == true) && (destination.agent_registry.resource_type == 'MCP_SERVER')"
+          }
+        }
+      },
+      {
+        "description": "DENY any MCP tool annotated with destructiveHint == true in Agent Registry",
+        "effect": "DENY",
+        "principals": [
+          "${ALL_AGENTS}",
+          "serviceAccount:service-${PROJECT_NUMBER}@gcp-sa-discoveryengine.iam.gserviceaccount.com",
+          "serviceAccount:service-${PROJECT_NUMBER}@gcp-sa-aiplatform-re.iam.gserviceaccount.com"
+        ],
+        "operation": {
+          "permissions": [
+            "iap.googleapis.com/resources.egressViaIAP"
+          ]
+        },
+        "conditions": {
+          "iap.googleapis.com": {
+            "title": "deny_destructive_mcp_tools",
+            "expression": "(destination.is_registered == true) && (destination.agent_registry.resource_type == 'MCP_SERVER') && (destination.agent_registry.mcp_server.method == 'tools') && (destination.agent_registry.mcp_server.tool.annotations.destructive_hint == true)"
+          }
+        }
+      }
+    ]
+  }
+}

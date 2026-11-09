@@ -1,0 +1,34 @@
+# Python & uv
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+
+# Environment & Secrets
+.env
+*.pem
+*.crt
+*.key
+agw_root.*
+iam_audit.json
+
+# Terraform
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/*.tfvars
+!**/*.tfvars.example
+**/.terraform.lock.hcl
+
+# OS & Editor
+.DS_Store
+.idea/
+.vscode/
+*.swp

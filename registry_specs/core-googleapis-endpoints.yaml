@@ -1,0 +1,65 @@
+# Consolidated Google Cloud APIs Catalog for Agent Gateway (ALL_TRAFFIC Mode)
+# Per Agent Platform Architecture Invariant:
+# Consolidate core Google APIs under a single service entry named 'googleapis'
+serviceId: googleapis
+displayName: "Google Cloud APIs (Consolidated)"
+description: "Consolidated Google Cloud APIs catalog for Egress Agent Gateway in ALL_TRAFFIC mode"
+endpointSpec:
+  type: NO_SPEC
+interfaces:
+  - url: "https://agentregistry.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://aiplatform.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://aiplatform.mtls.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://us-central1-aiplatform.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://us-central1-aiplatform.mtls.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://aiplatform.us-central1.rep.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://us-aiplatform.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://us-aiplatform.mtls.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://aiplatform.us.rep.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://discoveryengine.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://discoveryengine.mtls.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://modelarmor.us-central1.rep.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://modelarmor.us.rep.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://dlp.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://cloudresourcemanager.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://cloudresourcemanager.mtls.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://iamcredentials.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://iamcredentials.mtls.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://storage.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://telemetry.mtls.googleapis.com"
+    protocolBinding: GRPC
+  - url: "https://monitoring.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://trace.mtls.googleapis.com"
+    protocolBinding: GRPC
+  - url: "https://cloudtrace.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://logging.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://telemetry.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://secretmanager.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://sts.googleapis.com"
+    protocolBinding: HTTP_JSON
+  - url: "https://oauth2.googleapis.com"
+    protocolBinding: HTTP_JSON

@@ -1,0 +1,100 @@
+{
+  "tools": [
+    {
+      "name": "get_purchase_order",
+      "description": "Fetch purchase order status and supplier delivery notes by order_id.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string",
+            "description": "Purchase order ID (ORD-2026-5001 or ORD-INJ-9999)"
+          }
+        },
+        "required": ["order_id"]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "create_purchase_order",
+      "description": "Create a standard replenishment purchase order for a store.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "store_id": {
+            "type": "string",
+            "description": "Target store ID"
+          },
+          "product_sku": {
+            "type": "string",
+            "description": "Product SKU to order"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Order quantity (1-500)"
+          }
+        },
+        "required": ["store_id", "product_sku", "quantity"]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "cancel_all_store_orders",
+      "description": "[HIGH-RISK DESTRUCTIVE TOOL] Cancel all pending store replenishment orders across a region.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "region_code": {
+            "type": "string",
+            "description": "Target region code"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Cancellation reason"
+          }
+        },
+        "required": ["region_code", "reason"]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "override_product_unit_price",
+      "description": "[HIGH-RISK DESTRUCTIVE TOOL] Force-override master unit price for a SKU in production OMS.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "product_sku": {
+            "type": "string",
+            "description": "Target product SKU"
+          },
+          "new_price": {
+            "type": "number",
+            "description": "New unit price in KRW"
+          }
+        },
+        "required": ["product_sku", "new_price"]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      }
+    }
+  ]
+}

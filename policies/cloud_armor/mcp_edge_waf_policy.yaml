@@ -1,0 +1,41 @@
+# Google Cloud Armor Edge WAF Security Policy for AWS / Custom MCP Ingress
+# Enforces:
+#  1. Priority 900  (DENY 403): OWASP SQLi & XSS Preconfigured WAF Rules
+#  2. Priority 1000 (ALLOW)   : Egress Agent Gateway Static Cloud NAT IP (/32)
+#  3. Priority 1100 (ALLOW)   : Authorized Lab Tester / Admin Workstation IP (with valid X-MCP-Token header)
+#  4. Priority 2147483647     : Default DENY (HTTP 403 Forbidden) for all direct internet bypass attempts
+name: mcp-edge-cloud-armor-waf
+description: "Zero-Trust Cloud Armor WAF Policy protecting Custom MCP Server Ingress behind Egress Agent Gateway"
+type: CLOUD_ARMOR
+adaptiveProtectionConfig:
+  layer7DdosDefenseConfig:
+    enable: true
+rules:
+  - priority: 900
+    action: "deny(403)"
+    description: "Block OWASP SQL Injection and Cross-Site Scripting (XSS) payloads in MCP JSON-RPC"
+    match:
+      expr:
+        expression: "evaluatePreconfiguredWaf('sqli-v33-stable') || evaluatePreconfiguredWaf('xss-v33-stable')"
+  - priority: 1000
+    action: "allow"
+    description: "Allow governed traffic originating from Egress Agent Gateway Cloud NAT Static IP (/32)"
+    match:
+      versionedExpr: SRC_IPS_V1
+      config:
+        srcIpRanges:
+          - "${AGENT_GATEWAY_NAT_STATIC_IP}/32"
+  - priority: 1100
+    action: "allow"
+    description: "Allow authenticated MCP JSON-RPC calls carrying valid X-MCP-Token header from python-httpx or authorized clients"
+    match:
+      expr:
+        expression: "has(request.headers['x-mcp-token']) && request.headers['x-mcp-token'] == '${MCP_AUTH_TOKEN}'"
+  - priority: 2147483647
+    action: "deny(403)"
+    description: "Default Deny: Block all direct internet requests bypassing Egress Agent Gateway"
+    match:
+      versionedExpr: SRC_IPS_V1
+      config:
+        srcIpRanges:
+          - "*"

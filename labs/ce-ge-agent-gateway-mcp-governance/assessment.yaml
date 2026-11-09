@@ -1,0 +1,69 @@
+passing_percentage: 80
+steps:
+  - title: "Task 1: Deploy Simulated AWS FastMCP Server & Cloud Armor Edge WAF Policy"
+    locale_id: step-1
+    maximum_score: 15
+    student_messages:
+      success: "Simulated AWS FastMCP Server and Cloud Armor Edge WAF Policy (cymbal-mcp-edge-waf-policy) verified!"
+      error_message: "Please run scripts/01_deploy_aws_mock_mcp_and_cloud_armor.py to deploy the Simulated AWS FastMCP Server and Cloud Armor Edge WAF Policy."
+    services:
+      - project_0.LoggingV2
+      - project_0.ComputeV1
+      - project_0.StorageV1
+    method_name: step_1_mcp_cloud_armor_check
+
+  - title: "Task 2: Register Multi-Cloud AWS MCP Servers in Agent Registry (us-central1)"
+    locale_id: step-2
+    maximum_score: 15
+    student_messages:
+      success: "AWS Store Inventory & OMS Order MCP Servers registered in Agent Registry (us-central1)!"
+      error_message: "Please run scripts/02_register_mcp_in_agent_registry.py to register cymbal-store-inventory-mcp and cymbal-oms-order-mcp in Agent Registry (us-central1)."
+    services:
+      - project_0.LoggingV2
+      - project_0.StorageV1
+    method_name: step_2_agent_registry_check
+
+  - title: "Task 3: Provision PSC Network Attachment, ACT & Egress Agent Gateway"
+    locale_id: step-3
+    maximum_score: 20
+    student_messages:
+      success: "PSC Network Attachment, Cloud NAT Static IP (/32), Agent Connectivity Template (ACT), and Egress Agent Gateway verified!"
+      error_message: "Please run scripts/03_provision_act_and_agent_gateway.py to provision the PSC Network Attachment, Cloud NAT, ACT, and Egress Agent Gateway."
+    services:
+      - project_0.LoggingV2
+      - project_0.ComputeV1
+      - project_0.StorageV1
+    method_name: step_3_agent_gateway_act_check
+
+  - title: "Task 4: Bind IAP Request Authz (UAP Policy V2 / IAP Policy V1)"
+    locale_id: step-4
+    maximum_score: 15
+    student_messages:
+      success: "IAP Request Authz (roles/iap.egressor & AuthzExtension) verified!"
+      error_message: "Please run scripts/04_bind_cloud_model_armor_and_sdp.py to bind IAP Request Authz policies."
+    services:
+      - project_0.LoggingV2
+      - project_0.StorageV1
+    method_name: step_4_iap_uap_policy_check
+
+  - title: "Task 4: Create Model Armor Templates (us & us-central1) & SDP Content Policy"
+    locale_id: step-5
+    maximum_score: 20
+    student_messages:
+      success: "Model Armor Templates (locations/us & locations/us-central1) and SDP Inspect/De-identify Content Policy verified!"
+      error_message: "Please run scripts/04_bind_cloud_model_armor_and_sdp.py to create Model Armor Templates and SDP Content Policy."
+    services:
+      - project_0.LoggingV2
+      - project_0.StorageV1
+    method_name: step_5_model_armor_sdp_check
+
+  - title: "Task 5 & 6: Run 4 Red-Team Security Scenarios & BigQuery Audit Correlation"
+    locale_id: step-6
+    maximum_score: 15
+    student_messages:
+      success: "All 4 Security Verification Scenarios (Normal, Cloud Armor SQLi Block, Model Armor Prompt Injection Block, SDP PII Masking) and BigQuery Audit Correlation verified!"
+      error_message: "Please run scripts/05_bind_ge_and_run_security_scenarios.py and scripts/06_query_audit_logs_and_correlation.py."
+    services:
+      - project_0.LoggingV2
+      - project_0.StorageV1
+    method_name: step_6_ge_e2e_audit_check

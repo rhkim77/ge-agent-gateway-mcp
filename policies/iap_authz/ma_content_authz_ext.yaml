@@ -1,0 +1,11 @@
+# Inline Model Armor Content Authorization Extension for Egress Agent Gateway
+# Calls the regional Model Armor data-plane endpoint (modelarmor.${REGION}.rep.googleapis.com:443)
+name: projects/${PROJECT_NUMBER}/locations/${REGION}/authzExtensions/${MA_AUTHZ_EXT_ID}
+authority: "modelarmor.${REGION}.rep.googleapis.com"
+service: "modelarmor.${REGION}.rep.googleapis.com:443"
+timeout: 1s
+failOpen: true
+metadata:
+  model_armor_settings: >-
+    [{"request_template_id":"projects/${PROJECT_ID}/locations/${MA_AGW_LOCATION}/templates/${MA_AGW_TEMPLATE_ID}",
+      "response_template_id":"projects/${PROJECT_ID}/locations/${MA_AGW_LOCATION}/templates/${MA_AGW_TEMPLATE_ID}"}]

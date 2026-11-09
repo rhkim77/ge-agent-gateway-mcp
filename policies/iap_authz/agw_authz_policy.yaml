@@ -1,0 +1,11 @@
+# Network Security Authorization Policy binding IAP REQUEST_AUTHZ to Egress Agent Gateway
+name: projects/${PROJECT_NUMBER}/locations/${REGION}/authzPolicies/${IAP_AUTHZ_POLICY_ID}
+action: CUSTOM
+policyProfile: REQUEST_AUTHZ
+target:
+  resources:
+    - "projects/${PROJECT_NUMBER}/locations/${REGION}/agentGateways/${AGENT_GATEWAY_ID}"
+customProvider:
+  authzExtension:
+    resources:
+      - "projects/${PROJECT_NUMBER}/locations/${REGION}/authzExtensions/${IAP_AUTHZ_EXT_ID}"

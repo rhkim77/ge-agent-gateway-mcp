@@ -1,0 +1,22 @@
+{
+  "filterConfig": {
+    "piAndJailbreakFilterSettings": {
+      "filterEnforcement": "ENABLED",
+      "confidenceLevel": "MEDIUM_AND_ABOVE"
+    },
+    "maliciousUriFilterSettings": {
+      "filterEnforcement": "ENABLED"
+    },
+    "sdpSettings": {
+      "basicConfig": {
+        "filterEnforcement": "ENABLED"
+      }
+    }
+  },
+  "templateMetadata": {
+    "enforcementType": "${MODEL_ARMOR_ENFORCEMENT}",
+    "logTemplateOperations": true,
+    "logSanitizeOperations": true,
+    "ignorePartialInvocationFailures": false
+  }
+}

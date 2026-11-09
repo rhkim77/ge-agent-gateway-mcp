@@ -1,0 +1,10 @@
+{
+  "status": "SUCCESS",
+  "source_system": "AWS-AP-NORTHEAST-2-INVENTORY-MCP",
+  "store_id": "STORE-SEOUL-001",
+  "product_sku": "SKU-LUNCHBOX-101",
+  "product_name": "Cymbal Fresh Signature Lunchbox",
+  "on_hand_quantity": 48,
+  "safety_stock_threshold": 15,
+  "restock_eta": "2026-11-10T06:00:00Z"
+}

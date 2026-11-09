@@ -1,0 +1,50 @@
+{
+  "contentPolicyId": "${SDP_POLICY_ID}",
+  "contentPolicy": {
+    "displayName": "Cymbal Enterprise GE & Custom MCP Sensitive Data Protection Policy",
+    "inspectConfig": {
+      "infoTypes": [
+        { "name": "KOREA_RRN" },
+        { "name": "CREDIT_CARD_NUMBER" },
+        { "name": "PHONE_NUMBER" },
+        { "name": "EMAIL_ADDRESS" }
+      ],
+      "minLikelihood": "POSSIBLE"
+    },
+    "rules": [
+      {
+        "conditions": [
+          {
+            "infoTypeCondition": {
+              "anyInfoType": {}
+            }
+          }
+        ],
+        "action": {
+          "returnVerdict": "${SDP_VERDICT}"
+        }
+      }
+    ],
+    "unsupportedFileType": {
+      "returnVerdict": "${SDP_VERDICT}"
+    },
+    "inputTooLarge": {
+      "returnVerdict": "${SDP_VERDICT}"
+    },
+    "failedToScanSupportedFileType": {
+      "returnVerdict": "${SDP_VERDICT}"
+    },
+    "defaultAction": {
+      "returnVerdict": "ALLOW"
+    },
+    "loggingConfigs": [
+      {
+        "logToBigQuery": {
+          "projectId": "${PROJECT_ID}",
+          "datasetId": "${BQ_DATASET_ID}",
+          "tableId": "${BQ_TABLE_ID}"
+        }
+      }
+    ]
+  }
+}

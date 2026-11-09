@@ -1,0 +1,11 @@
+[project]
+name = "simulated-aws-fastmcp-servers"
+version = "1.0.0"
+description = "Simulated AWS-Hosted Enterprise FastMCP Servers (Store Inventory & OMS Order Management) for Gemini Enterprise + Agent Gateway Governance Lab"
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp>=2.2.0",
+    "httpx>=0.27.0",
+    "starlette>=0.37.0",
+    "uvicorn>=0.30.0",
+]

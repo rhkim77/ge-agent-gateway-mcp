@@ -1,0 +1,72 @@
+entity_type: Lab
+schema_version: 2
+default_locale: en
+title: "Multi-Cloud AWS MCP & Gemini Enterprise Governance with Agent Registry, Agent Gateway, Cloud Armor, Model Armor & SDP"
+description: "Deploy Simulated AWS FastMCP Servers, register them in Google Cloud Agent Registry (us-central1), provision a deterministic Egress Agent Gateway with PSC Network Attachment and Cloud NAT (/32), enforce Cloud Armor WAF, IAP Request Authz, Model Armor, and Sensitive Data Protection (SDP) policies, and validate end-to-end security with Gemini Enterprise."
+duration: 90
+max_duration: 120
+level: advanced
+credits: 5
+tags:
+  - gemini-enterprise
+  - agent-registry
+  - agent-gateway
+  - model-armor
+  - cloud-armor
+  - sdp
+instruction:
+  type: md
+  uri: instructions/en.md
+  includes:
+    - id: startqwiklab
+      type: SharedInstruction
+      title: Start Qwiklab Fragment
+      uri: ../../fragments/startqwiklab
+    - id: gcpconsole
+      type: SharedInstruction
+      title: GCP Console Fragment
+      uri: ../../fragments/gcpconsole
+resources:
+  - id: assessment
+    type: Assessment
+    title: Lab Assessment Configuration
+    uri: assessment.yaml
+assessment: assessment.yaml
+environment:
+  resources:
+    - id: project_0
+      type: gcp_project
+      variant: gcp_medium_extra
+      ssh_key_user: user_0
+      allowed_locations_constraint: NONE
+      startup_script:
+        type: qwiklabs
+        path: terraform
+    - id: user_0
+      type: gcp_user
+      permissions:
+        - project: project_0
+          roles:
+            - roles/owner
+            - roles/iap.admin
+            - roles/networkservices.admin
+            - roles/compute.networkAdmin
+            - roles/compute.securityAdmin
+            - roles/modelarmor.admin
+            - roles/dlp.admin
+            - roles/discoveryengine.admin
+            - roles/bigquery.admin
+            - roles/logging.admin
+  student_visible_outputs:
+    - label: "Open Google Cloud Console"
+      reference: project_0.console_url
+    - label: "Open Remote Browser Work Environment"
+      reference: project_0.startup_script.remote_browser_url
+    - label: "GCP Project ID"
+      reference: project_0.project_id
+    - label: "Simulated AWS MCP State Bucket"
+      reference: project_0.startup_script.state_bucket_name
+    - label: "Username"
+      reference: user_0.username
+    - label: "Password"
+      reference: user_0.password

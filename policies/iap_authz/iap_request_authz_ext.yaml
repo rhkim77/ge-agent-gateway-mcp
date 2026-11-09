@@ -1,0 +1,11 @@
+# IAP Request Authorization Extension for Egress Agent Gateway
+# Note: Omit loadBalancingScheme when targeting an AgentGateway
+name: projects/${PROJECT_NUMBER}/locations/${REGION}/authzExtensions/${IAP_AUTHZ_EXT_ID}
+authority: iap.googleapis.com
+service: iap.googleapis.com
+timeout: 1s
+failOpen: false
+forwardHeaders:
+  - Authorization
+metadata:
+  iapPolicyVersion: "${IAP_POLICY_VERSION}"
