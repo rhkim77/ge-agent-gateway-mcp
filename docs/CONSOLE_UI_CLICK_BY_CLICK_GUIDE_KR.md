@@ -8,36 +8,39 @@
 
 기업의 핵심 비즈니스 시스템(`Store Inventory Management`, `Order Management System (OMS)`)은 `AWS VPC` 내부에 운영 중인 반면, 전사 임직원이 사용하는 통합 `AI Assistant`로 **`Google Cloud Gemini Enterprise (GE)`**를 도입하는 `Multi-Cloud` 환경에서는 단순한 `API` 호출 이상의 **4가지 구조적·보안적 난제**가 발생합니다.
 
+![Figure 2. Direct Multi-Cloud MCP Challenges vs. 5-Layer Governance Architecture Solutions](diagrams/diagram-2-problems-vs-5layer-solutions.svg)
+
+> **Editable Diagram Assets (`Figure 2`)**: [`SVG`](diagrams/diagram-2-problems-vs-5layer-solutions.svg) | [`2x Retina PNG`](diagrams/diagram-2-problems-vs-5layer-solutions.png) | [`Draw.io (.drawio)`](diagrams/diagram-2-problems-vs-5layer-solutions.drawio) | [`All 6 Diagrams Workbook (.drawio)`](diagrams/ge-agent-gateway-mcp-all-diagrams.drawio)
+
+<details>
+<summary><b>View Editable Mermaid Source (Google Cloud Standard Palette)</b></summary>
+
 ```mermaid
 flowchart TD
+    classDef probCard fill:#FFFFFF,stroke:#EA4335,stroke-width:2px,color:#202124,rx:8px,ry:8px
+    classDef solCard fill:#FFFFFF,stroke:#4285F4,stroke-width:2px,color:#202124,rx:8px,ry:8px
+
     subgraph ProblemSpace["기존 Direct MCP 연결 시 발생하는 4대 보안·네트워크 난제"]
-        P1["1. 비결정적 Outbound IP<br/>Google Tenant(Cloud Conduit)의<br/>수십 개 동적 대역으로 인해<br/>AWS Security Group 단일 IP 허용 불가"]
-        P2["2. Shadow MCP & 권한 통제 부재<br/>분산된 MCP Endpoint의 카탈로그 부재 및<br/>파괴적 Tool(전체 발주 취소 등)에 대한<br/>세분화된 호출 차단 불가"]
-        P3["3. Indirect Prompt Injection 무방비<br/>외부 AWS MCP Server가 반환한<br/>오염된 데이터(배송 메모 내 악성 명령)가<br/>LLM Context를 직접 하이재킹"]
-        P4["4. 민감 개인정보(PII) 유출 위험<br/>VIP 클레임 조회 시 주민번호·카드번호가<br/>마스킹 없이 LLM 및 화면에 노출"]
+        P1["<b>1. 비결정적 Outbound IP</b><br/>Google Tenant(Cloud Conduit)의 수십 개 동적 대역으로 인해<br/>AWS Security Group 단일 IP 허용 불가"]:::probCard
+        P2["<b>2. Shadow MCP & 권한 통제 부재</b><br/>분산된 MCP Endpoint의 카탈로그 부재 및<br/>파괴적 Tool(전체 발주 취소 등)에 대한 세분화된 호출 차단 불가"]:::probCard
+        P3["<b>3. Indirect Prompt Injection 무방비</b><br/>외부 AWS MCP Server가 반환한 오염된 데이터(배송 메모 내 악성 명령)가<br/>LLM Context를 직접 하이재킹"]:::probCard
+        P4["<b>4. 민감 개인정보(PII) 유출 위험</b><br/>VIP 클레임 조회 시 주민번호·카드번호가<br/>마스킹 없이 LLM 및 화면에 노출"]:::probCard
     end
 
     subgraph SolutionSpace["본 가이드의 5-Layer Governance 해결 아키텍처"]
-        S1["PSC Network Attachment + ACT + Cloud NAT<br/>Google Managed Tenant 트래픽을<br/>고객 VPC로 인입시켜 단일 /32 공인 IP 고정"]
-        S2["Agent Registry (us-central1) + IAP Authz<br/>MCP Tool Schema 통합 등록(UUID) 및<br/>roles/iap.egressor + CEL 조건부 차단"]
-        S3["Dual Model Armor (us & us-central1)<br/>GE 사용자 프롬프트(us) 검사와 동시에<br/>Agent Gateway 인라인(us-central1)에서<br/>AWS MCP 응답 내 악성 지시문 실시간 차단"]
-        S4["Sensitive Data Protection (SDP) + BigQuery<br/>KR_RRN / Credit Card Luhn 검증 기반<br/>자동 마스킹(****) 및 통합 감사 로깅"]
+        S1["<b>PSC Network Attachment + ACT + Cloud NAT</b><br/>Google Managed Tenant 트래픽을 고객 VPC로 인입시켜<br/>단일 /32 공인 IP 고정"]:::solCard
+        S2["<b>Agent Registry (us-central1) + IAP Authz</b><br/>MCP Tool Schema 통합 등록(UUID) 및<br/>roles/iap.egressor + CEL 조건부 차단"]:::solCard
+        S3["<b>Dual Model Armor (us & us-central1)</b><br/>GE 사용자 프롬프트(us) 검사와 동시에<br/>Agent Gateway 인라인(us-central1)에서 AWS MCP 응답 내 악성 지시문 실시간 차단"]:::solCard
+        S4["<b>Sensitive Data Protection (SDP) + BigQuery</b><br/>KOREA_RRN / Credit Card Luhn 검증 기반<br/>자동 마스킹(****) 및 통합 감사 로깅"]:::solCard
     end
 
-    P1 ==>|"해결"| S1
-    P2 ==>|"해결"| S2
-    P3 ==>|"해결"| S3
-    P4 ==>|"해결"| S4
-
-    style P1 fill:#FCE8E6,stroke:#EA4335,stroke-width:2px,color:#202124
-    style P2 fill:#FCE8E6,stroke:#EA4335,stroke-width:2px,color:#202124
-    style P3 fill:#FCE8E6,stroke:#EA4335,stroke-width:2px,color:#202124
-    style P4 fill:#FCE8E6,stroke:#EA4335,stroke-width:2px,color:#202124
-    style S1 fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px,color:#202124
-    style S2 fill:#E6F4EA,stroke:#34A853,stroke-width:2px,color:#202124
-    style S3 fill:#FEF7E0,stroke:#FBBC04,stroke-width:2px,color:#202124
-    style S4 fill:#F3E8FD,stroke:#9334E6,stroke-width:2px,color:#202124
+    P1 ==>|"Solved by Layer 1 & 3"| S1
+    P2 ==>|"Solved by Layer 2 & 3"| S2
+    P3 ==>|"Solved by Layer 4"| S3
+    P4 ==>|"Solved by Layer 5"| S4
 ```
+
+</details>
 
 ### 1.1 대안 `Architecture` 비교 및 선정 이유 (`Trade-off Analysis`)
 
@@ -69,23 +72,28 @@ flowchart TD
 #### Rule 2: `ACT` 불변성(`Immutability`)에 따른 필수 프로비저닝 순서
 `Egress Agent Gateway`의 네트워크 출구 설정(`networkConfig.egress.agentConnectivityTemplate`)은 **게이트웨이 최초 생성 시점(`Create Time`)에만 지정할 수 있으며, 생성된 이후에는 수정(`Update`/`Patch`)이 불가능(`Immutable`)**합니다. 따라서 콘솔에서 설정할 때는 반드시 아래 순서대로 하위 네트워크부터 먼저 만들어야 합니다.
 
+![Figure 3. 7-Step Immutable Provisioning Workflow & Region Pinning](diagrams/diagram-3-immutable-provisioning-sequence.svg)
+
+> **Editable Diagram Assets (`Figure 3`)**: [`SVG`](diagrams/diagram-3-immutable-provisioning-sequence.svg) | [`2x Retina PNG`](diagrams/diagram-3-immutable-provisioning-sequence.png) | [`Draw.io (.drawio)`](diagrams/diagram-3-immutable-provisioning-sequence.drawio)
+
+<details>
+<summary><b>View Editable Mermaid Source (Google Cloud Standard Palette)</b></summary>
+
 ```mermaid
 flowchart LR
-    S1["Step 1<br/>Simulated AWS MCP<br/>& Cloud Armor WAF"] --> S2["Step 2<br/>VPC PSC-I Subnet(/26)<br/>Cloud NAT(/32) &<br/>PSC Attachment"]
-    S2 --> S3["Step 3<br/>Agent Registry<br/>(us-central1)<br/>MCP Server 등록"]
-    S3 --> S4["Step 4<br/>ACT 생성 후<br/>Egress Agent Gateway<br/>1-Step 바인딩"]
-    S4 --> S5["Step 5<br/>IAP Authz<br/>(UAP V2 / IAP V1)<br/>권한 부여"]
-    S5 --> S6["Step 6<br/>Model Armor<br/>(us & us-central1)<br/>& SDP 정책 생성"]
-    S6 --> S7["Step 7<br/>Gemini Enterprise<br/>도구·보안 바인딩 및<br/>4대 시나리오 검증"]
+    classDef p1Card fill:#FFFFFF,stroke:#4285F4,stroke-width:2px,color:#202124,rx:8px,ry:8px
+    classDef p2Card fill:#FFFFFF,stroke:#34A853,stroke-width:2px,color:#202124,rx:8px,ry:8px
+    classDef p3Card fill:#FFFFFF,stroke:#FBBC04,stroke-width:2px,color:#202124,rx:8px,ry:8px
 
-    style S1 fill:#FFF8E1,stroke:#F9AB00,stroke-width:2px,color:#202124
-    style S2 fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px,color:#202124
-    style S3 fill:#E6F4EA,stroke:#34A853,stroke-width:2px,color:#202124
-    style S4 fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px,color:#202124
-    style S5 fill:#FCE8E6,stroke:#EA4335,stroke-width:2px,color:#202124
-    style S6 fill:#FEF7E0,stroke:#FBBC04,stroke-width:2px,color:#202124
-    style S7 fill:#F3E8FD,stroke:#9334E6,stroke-width:2px,color:#202124
+    S1["<b>Step 1</b><br/>Simulated AWS MCP<br/>& Cloud Armor WAF"]:::p1Card --> S2["<b>Step 2</b><br/>VPC PSC-I Subnet(/26)<br/>Cloud NAT(/32) &<br/>PSC Attachment"]:::p1Card
+    S2 --> S3["<b>Step 3</b><br/>Agent Registry<br/>(us-central1)<br/>MCP Server 등록"]:::p2Card
+    S3 --> S4["<b>Step 4</b><br/>ACT 생성 후<br/>Egress Agent Gateway<br/>1-Step 바인딩"]:::p2Card
+    S4 --> S5["<b>Step 5</b><br/>IAP Authz<br/>(UAP V2 / IAP V1)<br/>권한 부여"]:::p3Card
+    S5 --> S6["<b>Step 6</b><br/>Model Armor<br/>(us & us-central1)<br/>& SDP 정책 생성"]:::p3Card
+    S6 --> S7["<b>Step 7</b><br/>Gemini Enterprise<br/>도구·보안 바인딩 및<br/>4대 시나리오 검증"]:::p3Card
 ```
+
+</details>
 
 ---
 
@@ -156,26 +164,35 @@ flowchart LR
 
 이를 해결하는 핵심 기술이 **`Private Service Connect Interface (PSC-I)` (`PSC Network Attachment`)**입니다:
 
+![Figure 4. Deterministic Egress Packet Flow via PSC Network Attachment, ACT (ALL_TRAFFIC) & Cloud NAT (/32)](diagrams/diagram-4-psci-act-cloud-nat-packet-flow.svg)
+
+> **Editable Diagram Assets (`Figure 4`)**: [`SVG`](diagrams/diagram-4-psci-act-cloud-nat-packet-flow.svg) | [`2x Retina PNG`](diagrams/diagram-4-psci-act-cloud-nat-packet-flow.png) | [`Draw.io (.drawio)`](diagrams/diagram-4-psci-act-cloud-nat-packet-flow.drawio)
+
+<details>
+<summary><b>View Editable Mermaid Sequence Diagram Source</b></summary>
+
 ```mermaid
 sequenceDiagram
     autonumber
     participant GE as Gemini Enterprise<br/>(Google Managed Tenant)
     participant AGW as Egress Agent Gateway<br/>(Google Managed Tenant)
-    participant NA as PSC Network Attachment<br/>(cymbal-agw-psc-attachment)
-    participant SUB as Customer VPC PSC-I Subnet<br/>(10.240.10.0/26)
+    participant NA as PSC Network Attachment<br/>(ge-agw-network-attachment-usc1)
+    participant SUB as Customer VPC PSC-I Subnet<br/>(10.250.10.0/26)
     participant NAT as Customer Cloud NAT<br/>(Static IP /32)
     participant AWS as AWS ALB & FastMCP<br/>(Security Group: Allow /32)
 
     GE->>AGW: Invoke MCP Tool (JSON-RPC 2.0)
     Note over AGW,NA: ACT (ALL_TRAFFIC) 바인딩에 의해<br/>Google Tenant NIC가 고객 VPC Subnet에 연결됨
     AGW->>NA: Egress Packet via PSC Interface
-    NA->>SUB: 고객 VPC 내부 IP(10.240.10.x)로 패킷 진입
+    NA->>SUB: 고객 VPC 내부 IP(10.250.10.x)로 패킷 진입
     SUB->>NAT: Default Route (0.0.0.0/0) -> Cloud NAT
     NAT->>AWS: Source IP가 고객 고정 IP(/32)로 SNAT되어 전송
     AWS-->>NAT: HTTP 200 OK (MCP Response)
     NAT-->>AGW: 역방향 전달
     AGW-->>GE: Inline Model Armor 검사 후 결과 반환
 ```
+
+</details>
 
 즉, **`PSC Network Attachment`**는 Google 관리형 `Agent Gateway` 컨테이너에 고객 `VPC` 내부의 네트워크 카드(`NIC`)를 하나 꽂아주는 역할을 합니다. 이 인터페이스를 통해 패킷이 고객 `VPC`의 `10.240.10.0/26` 서브넷으로 들어오면, 그 순간부터 고객 `VPC`의 라우팅 테이블과 **`Cloud NAT Static IP (/32)`**를 그대로 타고 외부 `AWS`로 나가게 됩니다.
 
@@ -329,19 +346,30 @@ sequenceDiagram
 
 이 단계는 본 아키텍처의 **핵심 보안 엔진(`Content Security Layer`)**을 구성하는 단계입니다. 왜 `Model Armor`와 `SDP`를 둘 다 설정해야 하는지, 그리고 왜 `Model Armor Template`을 2개 만들어야 하는지 이해하는 것이 매우 중요합니다.
 
+![Figure 5. Dual-Location Model Armor (locations/us & locations/us-central1) & SDP Inline Inspection Architecture](diagrams/diagram-5-dual-model-armor-sdp-inspection.svg)
+
+> **Editable Diagram Assets (`Figure 5`)**: [`SVG`](diagrams/diagram-5-dual-model-armor-sdp-inspection.svg) | [`2x Retina PNG`](diagrams/diagram-5-dual-model-armor-sdp-inspection.png) | [`Draw.io (.drawio)`](diagrams/diagram-5-dual-model-armor-sdp-inspection.drawio)
+
+<details>
+<summary><b>View Editable Mermaid Source (Google Cloud Standard Palette)</b></summary>
+
 ```mermaid
 flowchart TB
+    classDef userCard fill:#FFFFFF,stroke:#4285F4,stroke-width:2px,color:#202124,rx:8px,ry:8px
+    classDef secCard fill:#FFFFFF,stroke:#EA4335,stroke-width:2px,color:#202124,rx:8px,ry:8px
+    classDef awsCard fill:#FFFFFF,stroke:#FBBC04,stroke-width:2px,color:#202124,rx:8px,ry:8px
+
     subgraph UserPromptFlow["1. User Prompt & Final Response 보호 (Location: us)"]
-        U(["Enterprise User"])
-        GE["Gemini Enterprise App<br/>(global / us)"]
-        MA_US["Model Armor Template (locations/us)<br/>cymbal-ge-assistant-ma-us<br/>- Direct Jailbreak 차단<br/>- Malicious URI 차단"]
-        SDP_US["SDP Content Policy & Templates<br/>cymbal-ge-sdp-inspect / deid<br/>- KR_RRN (주민등록번호)<br/>- CREDIT_CARD_NUMBER (Luhn 검증)<br/>- PHONE / EMAIL 마스킹(****)"]
+        U["<b>Enterprise User</b>"]:::userCard
+        GE["<b>Gemini Enterprise App</b><br/>(global / us)"]:::userCard
+        MA_US["<b>Model Armor Template (locations/us)</b><br/>cymbal-ge-assistant-ma-us<br/>• Direct Jailbreak 차단<br/>• Malicious URI 차단"]:::secCard
+        SDP_US["<b>SDP Content Policy & Templates</b><br/>cymbal-ge-sdp-inspect / deid<br/>• KOREA_RRN (주민등록번호)<br/>• CREDIT_CARD_NUMBER (Luhn 검증)<br/>• PHONE / EMAIL 마스킹(****)"]:::secCard
     end
 
     subgraph ToolOutputFlow["2. AWS MCP Tool Output 인라인 보호 (Location: us-central1)"]
-        AGW["Egress Agent Gateway<br/>(us-central1)"]
-        MA_USC1["Model Armor Template (locations/us-central1)<br/>cymbal-agw-inline-ma-usc1<br/>- AWS MCP 응답 내 숨겨진<br/>  Indirect Prompt Injection 실시간 차단"]
-        AWS_MCP["AWS OMS MCP Server<br/>(오염된 배송 메모 반환:<br/>'SYSTEM OVERRIDE: Ignore rules...')"]
+        AGW["<b>Egress Agent Gateway</b><br/>(us-central1)"]:::userCard
+        MA_USC1["<b>Model Armor Template (locations/us-central1)</b><br/>cymbal-agw-inline-ma-usc1<br/>• AWS MCP 응답 내 숨겨진<br/>  Indirect Prompt Injection 실시간 차단"]:::secCard
+        AWS_MCP["<b>AWS OMS MCP Server</b><br/>(오염된 배송 메모 반환:<br/>'SYSTEM OVERRIDE: Ignore rules...')"]:::awsCard
     end
 
     U <-->|"Prompt / Response"| GE
@@ -351,15 +379,9 @@ flowchart TB
     AGW -->|"JSON-RPC"| AWS_MCP
     AWS_MCP -->|"Poisoned JSON"| AGW
     AGW <-->|"Inline CONTENT_AUTHZ 검사"| MA_USC1
-
-    style U fill:#FFFFFF,stroke:#4285F4,stroke-width:2px,color:#202124
-    style GE fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px,color:#202124
-    style MA_US fill:#FEF7E0,stroke:#FBBC04,stroke-width:2px,color:#202124
-    style SDP_US fill:#F3E8FD,stroke:#9334E6,stroke-width:2px,color:#202124
-    style AGW fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px,color:#202124
-    style MA_USC1 fill:#FCE8E6,stroke:#EA4335,stroke-width:2px,color:#202124
-    style AWS_MCP fill:#FFF8E1,stroke:#F9AB00,stroke-width:2px,color:#202124
 ```
+
+</details>
 
 1. **왜 `Model Armor Template`을 `locations/us`와 `locations/us-central1` 두 곳에 만드는가?**
    - **`locations/us` 템플릿 (`cymbal-ge-assistant-ma-us`)**: `Gemini Enterprise Assistant` 자체에 바인딩되어 **사용자가 입력하는 `Direct Prompt Injection / Jailbreak`**와 **최종 생성되는 `LLM Response`**를 검사합니다. (`Gemini Enterprise`가 `global`/`us` 서비스이므로 반드시 `locations/us`에 있어야 합니다.)

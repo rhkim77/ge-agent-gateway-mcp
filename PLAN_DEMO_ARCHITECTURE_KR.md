@@ -23,7 +23,23 @@
 
 ---
 
-## 2. 6단계 핸즈온 실습 및 5대 보안 검증 시나리오 (`Curriculum & Scenarios`)
+## 2. GCP 표준 아키텍처 다이어그램 (`Target Architecture & Governance Flow Diagrams`)
+
+본 `Repository`의 모든 아키텍처 다이어그램은 **`Google Cloud Official Architecture Style`**(`4-Color / 2-Color Vector Icons`, `Swimlane Zones`, `Orthogonal Connectors`) 및 **`Draw.io` (`.drawio` XML) / `SVG` / `2x Retina PNG`** 표준 포맷으로 제공됩니다.
+- **통합 6-Tab `Draw.io` 원본 파일**: [`docs/diagrams/ge-agent-gateway-mcp-all-diagrams.drawio`](docs/diagrams/ge-agent-gateway-mcp-all-diagrams.drawio)
+
+### 2.1 전체 5-Layer 보안 거버넌스 아키텍처 (`Figure 1`)
+![Figure 1. Multi-Cloud AWS MCP & Gemini Enterprise 5-Layer Zero-Trust Governance Architecture](docs/diagrams/diagram-1-e2e-5layer-governance-architecture.svg)
+
+### 2.2 기존 Direct MCP 연동의 4대 난제 vs. 5-Layer 해결 구조 (`Figure 2`)
+![Figure 2. Direct Multi-Cloud MCP Challenges vs. 5-Layer Governance Architecture Solutions](docs/diagrams/diagram-2-problems-vs-5layer-solutions.svg)
+
+### 2.3 `ACT` 불변성(`Immutability`) 및 `Region Pinning` 준수 프로비저닝 순서 (`Figure 3`)
+![Figure 3. 7-Step Immutable Provisioning Workflow & Region Pinning](docs/diagrams/diagram-3-immutable-provisioning-sequence.svg)
+
+---
+
+## 3. 6단계 핸즈온 실습 및 5대 보안 검증 시나리오 (`Curriculum & Scenarios`)
 
 | 단계 | 실습 제목 (`Task Title`) | 실행 명령어 (`Make Target`) | 핵심 검증 시나리오 |
 | :---: | :--- | :--- | :--- |

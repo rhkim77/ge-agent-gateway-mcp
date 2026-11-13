@@ -27,37 +27,42 @@ uv run python scripts/02_register_mcp_in_agent_registry.py --live
 
 `Agent Connectivity Template (ACT)`의 `ALL_TRAFFIC` 모드를 사용하면 `Google Managed Tenant`에서 발생한 모든 `MCP Tool Call`은 고객 `Google Cloud VPC`의 **`PSC-I Subnet (/26)`**으로 진입합니다. 이후 배포 아키텍처에 따라 다음 두 가지 경로 중 하나로 `AWS`에 도달합니다.
 
+![Figure 6. Production AWS MCP Connectivity: Path A (Public Cloud NAT /32) vs. Path B (Private VPN / Interconnect /26)](diagrams/diagram-6-aws-hybrid-egress-paths.svg)
+
+> **Editable Diagram Assets (`Figure 6`)**: [`SVG`](diagrams/diagram-6-aws-hybrid-egress-paths.svg) | [`2x Retina PNG`](diagrams/diagram-6-aws-hybrid-egress-paths.png) | [`Draw.io (.drawio)`](diagrams/diagram-6-aws-hybrid-egress-paths.drawio) | [`All 6 Diagrams Workbook (.drawio)`](diagrams/ge-agent-gateway-mcp-all-diagrams.drawio)
+
+<details>
+<summary><b>View Editable Mermaid Source (Google Cloud Standard Palette)</b></summary>
+
 ```mermaid
 flowchart LR
-    subgraph GCP["Google Cloud VPC (us-central1)"]
-        AGW["Egress Agent Gateway<br/>(ACT: ALL_TRAFFIC)"]
-        PSCI["PSC-I Subnet<br/>(10.240.10.0/26)"]
-        NAT["Cloud NAT<br/>(Static IP /32)"]
-        VPN["Cloud VPN /<br/>Dedicated Interconnect"]
+    classDef gcpCard fill:#FFFFFF,stroke:#4285F4,stroke-width:2px,color:#202124,rx:8px,ry:8px
+    classDef natCard fill:#FFFFFF,stroke:#34A853,stroke-width:2px,color:#202124,rx:8px,ry:8px
+    classDef awsCard fill:#FFFFFF,stroke:#FBBC04,stroke-width:2px,color:#202124,rx:8px,ry:8px
+
+    subgraph GCP["1. Google Cloud Customer VPC (us-central1)"]
+        AGW["<b>Egress Agent Gateway</b><br/>(ACT: ALL_TRAFFIC)"]:::gcpCard
+        PSCI["<b>PSC Network Attachment & Subnet</b><br/>(10.250.10.0/26 · IPv4-Only)"]:::gcpCard
+        NAT["<b>Cloud NAT Gateway</b><br/>(Manual Static IP /32)"]:::natCard
+        VPN["<b>Cloud Router + HA VPN / Interconnect</b><br/>(Custom BGP Adv: 10.250.10.0/26)"]:::natCard
     end
 
-    subgraph AWS["AWS VPC (Target MCP Environment)"]
-        ALB_PUB["Internet-Facing AWS ALB<br/>(Security Group: Allow /32 NAT IP)"]
-        ALB_PRIV["Internal AWS ALB<br/>(Security Group: Allow /26 PSC-I CIDR)"]
-        ECS["AWS ECS / EKS<br/>FastMCP Containers"]
+    subgraph AWS["2. AWS VPC (Target MCP Environment)"]
+        ALB_PUB["<b>Internet-Facing AWS ALB + WAF</b><br/>(Security Group: Allow /32 NAT IP)"]:::awsCard
+        ALB_PRIV["<b>Internal Private AWS ALB</b><br/>(Security Group: Allow 10.250.10.0/26)"]:::awsCard
+        ECS["<b>AWS ECS / EKS FastMCP Containers</b><br/>(Full TLS Chain: Leaf + Intermediate CA)"]:::awsCard
     end
 
-    AGW --> PSCI
-    PSCI -->|"Path A: Public Over HTTPS"| NAT
+    AGW -->|"PSC-I Egress"| PSCI
+    PSCI -->|"Path A: Public HTTPS"| NAT
     NAT -->|"Source IP: <CLOUD_NAT_STATIC_IP>/32"| ALB_PUB
-    PSCI -->|"Path B: Private HA VPN / Interconnect"| VPN
-    VPN -->|"Source IP: 10.240.10.0/26"| ALB_PRIV
-    ALB_PUB --> ECS
-    ALB_PRIV --> ECS
-
-    style AGW fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px,color:#202124
-    style PSCI fill:#F8F9FA,stroke:#5F6368,stroke-width:2px,color:#202124
-    style NAT fill:#E6F4EA,stroke:#34A853,stroke-width:2px,color:#202124
-    style VPN fill:#E6F4EA,stroke:#34A853,stroke-width:2px,color:#202124
-    style ALB_PUB fill:#FFF8E1,stroke:#F9AB00,stroke-width:2px,color:#202124
-    style ALB_PRIV fill:#FFF8E1,stroke:#F9AB00,stroke-width:2px,color:#202124
-    style ECS fill:#FFF8E1,stroke:#F9AB00,stroke-width:2px,color:#202124
+    PSCI -->|"Path B: Private HA VPN / DX"| VPN
+    VPN -->|"Source IP: 10.250.10.0/26"| ALB_PRIV
+    ALB_PUB -->|"JSON-RPC 2.0"| ECS
+    ALB_PRIV -->|"JSON-RPC 2.0"| ECS
 ```
+
+</details>
 
 ### Path A: Public Internet over HTTPS (`Cloud NAT Static IP /32`)
 - **적용 대상**: `Google Cloud`와 `AWS` 간 전용선(`Interconnect`/`VPN`) 없이 공인 인터넷 구간 `TLS 1.3` 암호화 통신을 사용하는 경우

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GCP Standard Architecture Diagrams — ge-agent-gateway-mcp</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --border: #dadce0;
+      --blue: #1a73e8;
+      --text: #202124;
+      --muted: #5f6368;
+    }
+    body {
+      font-family: "Google Sans", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 24px 32px;
+    }
+    .header {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--blue);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .header h1 {
+      margin: 0 0 6px 0;
+      font-size: 20px;
+      color: var(--blue);
+    }
+    .header p {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+    .diagram-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .diagram-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f1f3f4;
+    }
+    .diagram-header h2 {
+      margin: 0;
+      font-size: 16px;
+      color: var(--text);
+    }
+    .badges a {
+      display: inline-block;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 6px;
+      margin-left: 6px;
+      border: 1px solid var(--border);
+      color: var(--blue);
+      background: #f8fafd;
+    }
+    .badges a:hover {
+      background: #e8f0fe;
+    }
+    .diagram-img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #f1f3f4;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Google Cloud Official Standard Architecture Diagrams — ge-agent-gateway-mcp</h1>
+    <p>6 Publication-Grade Diagrams in Vector SVG, 2x Retina PNG, and Editable Draw.io (.drawio) Formats | <a href="ge-agent-gateway-mcp-all-diagrams.drawio">Download Master 6-Tab Draw.io Workbook (.drawio)</a></p>
+  </div>
+
+  <div class="diagram-card">
+    <div class="diagram-header">
+      <h2>Figure 1. Multi-Cloud AWS MCP &amp; Gemini Enterprise 5-Layer Zero-Trust Governance Architecture</h2>
+      <div class="badges">
+        <a href="diagram-1-e2e-5layer-governance-architecture.svg">SVG</a>
+        <a href="diagram-1-e2e-5layer-governance-architecture.png">2x PNG</a>
+        <a href="diagram-1-e2e-5layer-governance-architecture.drawio">Draw.io (.drawio)</a>
+      </div>
+    </div>
+    <img class="diagram-img" src="diagram-1-e2e-5layer-governance-architecture.svg" alt="Figure 1" />
+  </div>
+
+  <div class="diagram-card">
+    <div class="diagram-header">
+      <h2>Figure 2. Direct Multi-Cloud MCP Challenges vs. 5-Layer Governance Architecture Solutions</h2>
+      <div class="badges">
+        <a href="diagram-2-problems-vs-5layer-solutions.svg">SVG</a>
+        <a href="diagram-2-problems-vs-5layer-solutions.png">2x PNG</a>
+        <a href="diagram-2-problems-vs-5layer-solutions.drawio">Draw.io (.drawio)</a>
+      </div>
+    </div>
+    <img class="diagram-img" src="diagram-2-problems-vs-5layer-solutions.svg" alt="Figure 2" />
+  </div>
+
+  <div class="diagram-card">
+    <div class="diagram-header">
+      <h2>Figure 3. 7-Step Immutable Provisioning Workflow &amp; Region Pinning (us-central1 vs. us / global)</h2>
+      <div class="badges">
+        <a href="diagram-3-immutable-provisioning-sequence.svg">SVG</a>
+        <a href="diagram-3-immutable-provisioning-sequence.png">2x PNG</a>
+        <a href="diagram-3-immutable-provisioning-sequence.drawio">Draw.io (.drawio)</a>
+      </div>
+    </div>
+    <img class="diagram-img" src="diagram-3-immutable-provisioning-sequence.svg" alt="Figure 3" />
+  </div>
+
+  <div class="diagram-card">
+    <div class="diagram-header">
+      <h2>Figure 4. Deterministic Egress Packet Flow via PSC Network Attachment, ACT (ALL_TRAFFIC) &amp; Cloud NAT (/32)</h2>
+      <div class="badges">
+        <a href="diagram-4-psci-act-cloud-nat-packet-flow.svg">SVG</a>
+        <a href="diagram-4-psci-act-cloud-nat-packet-flow.png">2x PNG</a>
+        <a href="diagram-4-psci-act-cloud-nat-packet-flow.drawio">Draw.io (.drawio)</a>
+      </div>
+    </div>
+    <img class="diagram-img" src="diagram-4-psci-act-cloud-nat-packet-flow.svg" alt="Figure 4" />
+  </div>
+
+  <div class="diagram-card">
+    <div class="diagram-header">
+      <h2>Figure 5. Dual-Location Model Armor (locations/us &amp; locations/us-central1) &amp; SDP Inline Inspection Architecture</h2>
+      <div class="badges">
+        <a href="diagram-5-dual-model-armor-sdp-inspection.svg">SVG</a>
+        <a href="diagram-5-dual-model-armor-sdp-inspection.png">2x PNG</a>
+        <a href="diagram-5-dual-model-armor-sdp-inspection.drawio">Draw.io (.drawio)</a>
+      </div>
+    </div>
+    <img class="diagram-img" src="diagram-5-dual-model-armor-sdp-inspection.svg" alt="Figure 5" />
+  </div>
+
+  <div class="diagram-card">
+    <div class="diagram-header">
+      <h2>Figure 6. Production AWS MCP Connectivity: Path A (Public Cloud NAT /32) vs. Path B (Private VPN / Interconnect /26)</h2>
+      <div class="badges">
+        <a href="diagram-6-aws-hybrid-egress-paths.svg">SVG</a>
+        <a href="diagram-6-aws-hybrid-egress-paths.png">2x PNG</a>
+        <a href="diagram-6-aws-hybrid-egress-paths.drawio">Draw.io (.drawio)</a>
+      </div>
+    </div>
+    <img class="diagram-img" src="diagram-6-aws-hybrid-egress-paths.svg" alt="Figure 6" />
+  </div>
+</body>
+</html>

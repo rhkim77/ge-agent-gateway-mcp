@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 730" width="1400" height="730">
+  <defs>
+
+    <filter id="card-shadow" x="-6%" y="-6%" width="112%" height="118%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.10"/>
+    </filter>
+    <marker id="arrow-1967D2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1967D2"/>
+    </marker>
+    <marker id="arrow-38761D" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#38761D"/>
+    </marker>
+    <marker id="arrow-B45F06" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#B45F06"/>
+    </marker>
+    <marker id="arrow-E69138" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#E69138"/>
+    </marker>
+    <symbol id="icon-agents" viewBox="0 0 512 512">
+      <g id="art">
+    <path d="M256.083,438.958h-.025c-6.531-.01-12.403-3.982-14.831-10.046-.21-.521-21.989-53.918-63.233-94.966-41.269-41.072-94.336-62.688-94.867-62.902-6.066-2.438-10.046-8.326-10.039-14.865.007-6.537,3.983-12.415,10.053-14.842.964-.39,53.504-21.883,94.854-63.036,41.476-41.278,63-94.697,63.213-95.231,2.422-6.092,8.316-10.098,14.871-10.098h.017c6.562.007,12.456,4.012,14.867,10.113.206.521,21.716,53.924,63.206,95.216,41.538,41.341,94.333,62.827,94.861,63.039,6.064,2.436,10.045,8.316,10.045,14.852s-3.969,12.416-10.033,14.851c-.52.209-53.737,21.965-94.874,62.904-41.11,40.916-63.029,94.463-63.245,94.999-2.444,6.048-8.317,10.013-14.838,10.013h-.002ZM125.551,256.183c21.069,11.566,49.712,29.899,75.016,55.082,25.399,25.278,43.886,54.093,55.524,75.267,11.659-21.198,30.162-50.046,55.502-75.267,25.252-25.131,53.939-43.484,75.035-55.069-21.021-11.563-49.611-29.911-75.035-55.213-25.47-25.349-43.907-54.14-55.514-75.348-11.608,21.21-30.048,50.005-55.512,75.348-25.409,25.288-53.996,43.635-75.017,55.2h0Z" fill="#4285f4"/>
+    <path d="M394.5,181c-4.095,0-8.189-1.562-11.313-4.687l-47.5-47.5c-6.249-6.248-6.249-16.379,0-22.627l47.5-47.5c6.248-6.249,16.379-6.249,22.627,0l47.5,47.5c6.249,6.248,6.249,16.379,0,22.627l-47.5,47.5c-3.124,3.124-7.219,4.687-11.313,4.687h-.001ZM369.627,117.5l24.873,24.873,24.873-24.873-24.873-24.873-24.873,24.873Z" fill="#9aa0a6"/>
+    <path d="M117.5,181c-4.095,0-8.189-1.562-11.313-4.687l-47.5-47.5c-6.249-6.248-6.249-16.379,0-22.627l47.5-47.5c6.248-6.249,16.379-6.249,22.627,0l47.5,47.5c6.249,6.248,6.249,16.379,0,22.627l-47.5,47.5c-3.124,3.124-7.219,4.687-11.313,4.687h0ZM92.627,117.5l24.873,24.873,24.873-24.873-24.873-24.873-24.873,24.873Z" fill="#4285f4"/>
+    <path d="M394.5,458c-4.095,0-8.189-1.562-11.313-4.687l-47.5-47.5c-6.249-6.248-6.249-16.379,0-22.627l47.5-47.5c6.248-6.248,16.379-6.248,22.627,0l47.5,47.5c6.249,6.248,6.249,16.379,0,22.627l-47.5,47.5c-3.124,3.124-7.219,4.687-11.313,4.687h-.001ZM369.627,394.5l24.873,24.873,24.873-24.873-24.873-24.873-24.873,24.873Z" fill="#4285f4"/>
+    <path d="M117.5,458c-4.095,0-8.189-1.562-11.313-4.687l-47.5-47.5c-6.249-6.248-6.249-16.379,0-22.627l47.5-47.5c6.248-6.248,16.379-6.248,22.627,0l47.5,47.5c6.249,6.248,6.249,16.379,0,22.627l-47.5,47.5c-3.124,3.124-7.219,4.687-11.313,4.687h0ZM92.627,394.5l24.873,24.873,24.873-24.873-24.873-24.873-24.873,24.873Z" fill="#9aa0a6"/>
+    <path d="M334.166,333.946c41.137-40.94,94.354-62.695,94.874-62.904,6.064-2.435,10.032-8.315,10.033-14.851,0-6.535-3.98-12.416-10.045-14.851-.528-.212-53.323-21.698-94.861-63.039-.072-.071-.15-.131-.223-.2l-22.604,22.604c.087.091.163.189.253.278,25.424,25.302,54.015,43.649,75.035,55.213-21.096,11.585-49.783,29.939-75.035,55.069-25.34,25.221-43.843,54.068-55.502,75.267-11.622-21.144-30.074-49.907-55.418-75.16l-22.628,22.628c41.21,41.041,62.971,94.392,63.181,94.913,2.428,6.064,8.3,10.035,14.831,10.046h.025c6.521,0,12.393-3.966,14.838-10.013.216-.536,22.135-54.083,63.245-94.999h.001Z" fill="#9aa0a6"/>
+    </g>
+    </symbol>
+    <symbol id="icon-aws_alb" viewBox="0 0 256 256">
+      <rect x="20" y="20" width="216" height="216" rx="18" fill="#4B8B3B"/>
+  <g transform="translate(62, 62) scale(5.5)">
+    <path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3h7zM7 9H4V5h3v4zm10 6h3v4h-3v-4zm0-10h3v4h-3V5z" fill="#FFFFFF"/>
+  </g>
+    </symbol>
+    <symbol id="icon-aws_mcp" viewBox="0 0 256 256">
+      <rect x="20" y="20" width="216" height="216" rx="18" fill="#3F48CC"/>
+  <g transform="translate(62, 62) scale(5.5)">
+    <path d="M19 15v4H5v-4h14m1-2H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zM7 18.5c-.82 0-1.5-.67-1.5-1.5s.68-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM19 5v4H5V5h14m1-2H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM7 8.5c-.82 0-1.5-.67-1.5-1.5S6.18 5.5 7 5.5s1.5.68 1.5 1.5S7.83 8.5 7 8.5z" fill="#FFFFFF"/>
+  </g>
+    </symbol>
+    <symbol id="icon-aws_sg" viewBox="0 0 256 256">
+      <rect x="20" y="20" width="216" height="216" rx="18" fill="#E37400"/>
+  <g transform="translate(62, 62) scale(5.5)">
+    <path d="M12 2 4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm6 9.09c0 4-2.55 7.7-6 8.83-3.45-1.13-6-4.82-6-8.83v-4.7l6-2.25 6 2.25v4.7z" fill="#FFFFFF"/>
+  </g>
+    </symbol>
+    <symbol id="icon-bigquery" viewBox="0 0 512 512">
+      <!-- Generator: Adobe Illustrator 29.1.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 142)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+      }
+
+      .st1 {
+        fill: #4285f4;
+      }
+
+      .st2 {
+        fill: #34a853;
+      }
+
+      .st3 {
+        fill: #fbbc04;
+      }
+
+      .st4 {
+        fill: #ea4335;
+      }
+    </style>
+  </defs>
+  <g id="bounding_box">
+    <rect class="st0" width="512" height="512"/>
+  </g>
+  <g id="art">
+    <path class="st2" d="M311.9,418.9c-8.8,0-16-7.2-16-16v-145.8c0-8.8,7.2-16,16-16s16,7.2,16,16v145.8c0,8.8-7.2,16-16,16h0Z"/>
+    <path class="st2" d="M147.6,418.9c-8.8,0-16-7.2-16-16v-200.5c0-8.8,7.2-16,16-16s16,7.2,16,16v200.5c0,8.8-7.2,16-16,16Z"/>
+    <path class="st2" d="M229.8,437.4c-8.8,0-16-7.2-16-16V147.6c0-8.8,7.2-16,16-16s16,7.2,16,16v273.7c0,8.8-7.2,16-16,16h0Z"/>
+    <path class="st3" d="M229.8,437.4c-114.5,0-207.6-93.1-207.6-207.6h32c0,96.8,78.8,175.6,175.6,175.6s175.6-78.8,175.6-175.6h32c0,114.5-93.1,207.6-207.6,207.6h0Z"/>
+    <path class="st4" d="M437.4,229.8h-32c0-96.8-78.8-175.6-175.6-175.6S54.1,132.9,54.1,229.8H22.1c0-114.5,93.2-207.7,207.7-207.7s207.6,93.1,207.6,207.6h0Z"/>
+    <path class="st1" d="M487.4,464.8l-100-100c32.3-37.6,49.9-85,49.9-135.1s-21.6-107.6-60.8-146.8l-22.6,22.6c33.2,33.2,51.4,77.3,51.4,124.2s-18.3,90.9-51.5,124.1h0c-5,5-7.5,7-11.8,10.8l122.8,122.8c3.1,3.1,7.2,4.7,11.3,4.7h0c4.1,0,8.2-1.6,11.3-4.7,6.2-6.2,6.2-16.4,0-22.6h0Z"/>
+  </g>
+    </symbol>
+    <symbol id="icon-cloud_dns" viewBox="0 0 256 256">
+      <polygon points="68,24 188,24 248,128 188,232 68,232 8,128" fill="#4285F4"/>
+  <polygon points="188,24 248,128 188,232 128,128" fill="#3367D6" opacity="0.28"/>
+  <polygon points="68,24 188,24 128,128 8,128" fill="#5E97F6" opacity="0.18"/>
+  <g transform="translate(68, 68) scale(5.0)">
+    <path d="M19 15v4H5v-4h14m1-2H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zM7 18.5c-.82 0-1.5-.67-1.5-1.5s.68-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM19 5v4H5V5h14m1-2H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM7 8.5c-.82 0-1.5-.67-1.5-1.5S6.18 5.5 7 5.5s1.5.68 1.5 1.5S7.83 8.5 7 8.5z" fill="#FFFFFF"/>
+  </g>
+    </symbol>
+    <symbol id="icon-devtools" viewBox="0 0 512 512">
+      <!-- Generator: Adobe Illustrator 29.1.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 142)  -->
+  <g id="bounding_box">
+    <rect width="512" height="512" fill="none"/>
+  </g>
+  <g id="art">
+    <path d="M180.63,347.41c-4.09,0-8.19-1.56-11.31-4.68-6.25-6.25-6.25-16.38,0-22.63l138.65-138.68c6.25-6.25,16.38-6.25,22.63,0s6.25,16.38,0,22.63l-138.65,138.68c-3.12,3.12-7.22,4.69-11.32,4.69v-.01Z" fill="#9aa0a6"/>
+    <path d="M134.65,458.35c-44.66,0-81-36.34-81-81s36.34-81,81-81,81,36.34,81,81-36.34,81-81,81ZM134.65,328.35c-27.02,0-49,21.98-49,49s21.98,49,49,49,49-21.98,49-49-21.98-49-49-49Z" fill="#4285f4"/>
+    <path d="M380.81,234.22c-27.52,0-53.39-10.72-72.85-30.18s-30.18-45.33-30.18-72.85,10.72-53.39,30.18-72.85c6.25-6.25,16.38-6.25,22.63,0s6.25,16.38,0,22.63c-27.69,27.7-27.69,72.76,0,100.45,27.7,27.7,72.76,27.69,100.45,0,6.25-6.25,16.38-6.25,22.63,0s6.25,16.38,0,22.63c-19.46,19.46-45.33,30.18-72.85,30.18l-.01-.01Z" fill="#4285f4"/>
+    <path d="M106.92,234.73c-4.1,0-8.19-1.56-11.31-4.69-6.25-6.25-6.25-16.38,0-22.63l63.23-63.23-63.23-63.23c-6.25-6.25-6.25-16.38,0-22.63s16.38-6.25,22.63,0l74.54,74.54c3,3,4.69,7.07,4.69,11.31s-1.69,8.31-4.69,11.31l-74.54,74.54c-3.12,3.12-7.22,4.69-11.31,4.69l-.01.02Z" fill="#9aa0a6"/>
+    <path d="M405.08,458.35c-4.1,0-8.19-1.56-11.31-4.69l-74.54-74.54c-3-3-4.69-7.07-4.69-11.31s1.69-8.31,4.69-11.31l74.54-74.54c6.25-6.25,16.38-6.25,22.63,0s6.25,16.38,0,22.63l-63.23,63.23,63.23,63.23c6.25,6.25,6.25,16.38,0,22.63-3.12,3.12-7.22,4.69-11.31,4.69l-.01-.02Z" fill="#9aa0a6"/>
+    <path d="M192.77,132.88l-11.31-11.31-85.85,85.85c-6.25,6.25-6.25,16.38,0,22.63,3.12,3.12,7.22,4.69,11.31,4.69s8.19-1.56,11.31-4.69l74.54-74.54c6.25-6.25,6.25-16.38,0-22.63Z" fill="#4285f4"/>
+    <path d="M319.23,379.12l11.31,11.31,85.85-85.85c6.25-6.25,6.25-16.38,0-22.63-3.12-3.12-7.22-4.69-11.31-4.69s-8.19,1.56-11.31,4.69l-74.54,74.54c-6.25,6.25-6.25,16.38,0,22.63Z" fill="#4285f4"/>
+  </g>
+    </symbol>
+    <symbol id="icon-firewall" viewBox="0 0 256 256">
+      <polygon points="68,24 188,24 248,128 188,232 68,232 8,128" fill="#4285F4"/>
+  <polygon points="188,24 248,128 188,232 128,128" fill="#3367D6" opacity="0.28"/>
+  <polygon points="68,24 188,24 128,128 8,128" fill="#5E97F6" opacity="0.18"/>
+  <g transform="translate(68, 68) scale(5.0)">
+    <path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" fill="#FFFFFF"/>
+  </g>
+    </symbol>
+    <symbol id="icon-hybrid" viewBox="0 0 512 512">
+      <!-- Generator: Adobe Illustrator 29.2.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 116)  -->
+  <g id="bounding_box">
+    <rect width="512" height="512" fill="none"/>
+  </g>
+  <g id="art">
+    <path d="M458.329,235.129c0-17.645-14.355-32-32-32h-170.6c-17.645,0-32,14.355-32,32v95.271c0,.111.014.219.017.33-.002.111-.017.219-.017.33v95.27c0,17.645,14.355,32,32,32h170.6c17.645,0,32-14.355,32-32v-95.27c0-.111-.014-.219-.017-.33.002-.111.017-.219.017-.33v-95.271ZM255.729,235.129h170.6v79.271h-170.6v-79.271ZM426.329,426.329h-170.6v-79.27h170.604l.017,79.269h-.021Z" fill="#9aa0a6"/>
+    <path d="M143.299,232.268c-8.837,0-16-7.163-16-16,0-89.293,72.646-161.938,161.938-161.938,28.928,0,57.324,7.725,82.12,22.34,24.053,14.177,44.156,34.442,58.137,58.606,4.426,7.648,1.812,17.437-5.836,21.861-7.646,4.425-17.436,1.813-21.861-5.836-23.188-40.076-66.318-64.972-112.56-64.972-71.648,0-129.938,58.29-129.938,129.938,0,8.837-7.163,16-16,16h0Z" fill="#9aa0a6"/>
+    <path d="M255.729,458.325h0c-17.673,0-32-14.327-32-32v-111.926h202.6v-111.273h0c17.673,0,32,14.327,32,32v111.273h-202.6v111.926Z" fill="#2b80f8"/>
+    <path d="M163.535,370.529h-8.03c-38.144,0-69.176-31.012-69.176-69.131,0-34.164,25.469-63.58,59.241-68.425,8.271-1.187,14.143-8.502,13.697-16.69l.031-.016c.012-8.895,1.248-18.035,1.248-18.035-8.317.896-29.311,4.906-32.769,5.891-.012.003-.028.007-.028.007h0c-18.652,5.319-35.521,15.957-48.452,30.747-16.101,18.416-24.968,42.04-24.968,66.521,0,55.764,45.388,101.131,101.176,101.131h8.03c8.837,0,16-7.163,16-16s-7.163-16-16-16h0Z" fill="#2b80f8"/>
+  </g>
+    </symbol>
+    <symbol id="icon-integration" viewBox="0 0 512 512">
+      <!-- Generator: Adobe Illustrator 29.1.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 142)  -->
+  <g id="bounding_box">
+    <rect width="512" height="512" fill="none"/>
+  </g>
+  <g id="art">
+    <path d="M346.683,112.611l-.039-75.171c-.005-8.834-7.167-15.992-16-15.992h-.008c-8.837.004-15.997,7.172-15.992,16.008l.039,75.155H118c-17.673,0-32,14.327-32,32v111.865c0,89.085,76.262,161.562,170,161.562s170-72.477,170-161.562v-111.865c0-17.673-14.327-32-32-32h-47.317ZM394,256.477c0,71.44-61.906,129.562-138,129.562s-138-58.121-138-129.562v-111.865h276v111.865Z" fill="#4285f4"/>
+    <path d="M314.644,144.611v-32h-117.294l-.039-75.171c-.005-8.834-7.167-15.992-16-15.992h-.008c-8.837.004-15.997,7.172-15.992,16.008l.039,75.155h-47.35c-17.673,0-32,14.327-32,32v111.865c0,83.959,67.741,153.155,154.007,160.841v56.679c0,8.616,6.621,16.029,15.228,16.433,9.188.432,16.772-6.889,16.772-15.982v-89.277c-6.594.627-8.014.652-16,.867h-.007c-76.094,0-138-58.121-138-129.562v-111.865h196.644,0Z" fill="#9aa0a6"/>
+  </g>
+    </symbol>
+    <symbol id="icon-onprem" viewBox="0 0 512 512">
+      <rect x="96" y="96" width="320" height="112" rx="24" fill="#f1f3f4" stroke="#5f6368" stroke-width="24"/>
+  <rect x="96" y="256" width="320" height="112" rx="24" fill="#f1f3f4" stroke="#5f6368" stroke-width="24"/>
+  <circle cx="160" cy="152" r="16" fill="#34a853"/>
+  <circle cx="160" cy="312" r="16" fill="#34a853"/>
+  <line x1="240" y1="152" x2="352" y2="152" stroke="#5f6368" stroke-width="24" stroke-linecap="round"/>
+  <line x1="240" y1="312" x2="352" y2="312" stroke="#5f6368" stroke-width="24" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-psc" viewBox="0 0 256 256">
+      <polygon points="68,24 188,24 248,128 188,232 68,232 8,128" fill="#4285F4"/>
+  <polygon points="188,24 248,128 188,232 128,128" fill="#3367D6" opacity="0.28"/>
+  <polygon points="68,24 188,24 128,128 8,128" fill="#5E97F6" opacity="0.18"/>
+  <g transform="translate(68, 68) scale(5.0)">
+    <path d="M7.77 6.76 6.23 5.48.82 12l5.41 6.52 1.54-1.28L3.42 12l4.35-5.24zM7 13h2v-2H7v2zm10-2h-2v2h2v-2zm-6 2h2v-2h-2v2zm6.77-7.52-1.54 1.28L20.58 12l-4.35 5.24 1.54 1.28L23.18 12l-5.41-6.52z" fill="#FFFFFF"/>
+  </g>
+    </symbol>
+    <symbol id="icon-router" viewBox="0 0 256 256">
+      <polygon points="68,24 188,24 248,128 188,232 68,232 8,128" fill="#4285F4"/>
+  <polygon points="188,24 248,128 188,232 128,128" fill="#3367D6" opacity="0.28"/>
+  <polygon points="68,24 188,24 128,128 8,128" fill="#5E97F6" opacity="0.18"/>
+  <g transform="translate(68, 68) scale(5.0)">
+    <path d="M16 4.2c1.5 0 3 .6 4.2 1.7l.8-.8C19.6 3.7 17.8 3 16 3s-3.6.7-5 2.1l.8.8C13 4.8 14.5 4.2 16 4.2zm-3.3 2.5.8.8c.7-.7 1.6-1 2.5-1s1.8.3 2.5 1l.8-.8c-.9-.9-2.1-1.4-3.3-1.4s-2.4.5-3.3 1.4zM19 13h-2V9h-2v4H5c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zm0 6H5v-4h14v4zM6 16h2v2H6zm3.5 0h2v2h-2zm3.5 0h2v2h-2z" fill="#FFFFFF"/>
+  </g>
+    </symbol>
+    <symbol id="icon-scc" viewBox="0 0 512 512">
+      <!-- Generator: Adobe Illustrator 29.1.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 142)  -->
+  <g id="bounding_box">
+    <rect width="512" height="512" fill="none"/>
+  </g>
+  <g id="art">
+    <path d="M410.236,224.004l16,9.079,15.981-9.079.019-137.996c.001-8.549-3.327-16.586-9.371-22.631-5.383-5.385-12.348-8.607-19.846-9.249h-2.783l-8.308,15.927,8.308,15.947v138.002Z" fill="#4285f4"/>
+    <path d="M299.126,224.004c1.856,4.986,2.875,10.376,2.875,16s-1.019,11.014-2.875,16c-4.658,12.513-14.612,22.467-27.125,27.125l-11.65,15.957,11.65,17.269c30.237-6.305,54.046-30.113,60.351-60.351h77.804c-2.097,85.387-95.013,140.428-138.155,161.416l-16,19.613c18.351,1.964,26.131,2.31,40.845,3.749,16.822-8.754,37.762-21.045,58.291-36.803,25.06-19.237,45.065-40.153,59.46-62.167,18.324-28.021,27.615-57.879,27.615-88.74l.004-29.067h-109.865l-17.548-9.402-15.678,9.402h.001Z" fill="#34a853"/>
+    <path d="M272.001,163.653c30.237,6.305,54.046,30.113,60.351,60.351h77.865l.019-138.002h-138.235v77.651h0Z" fill="none"/>
+    <path d="M240.001,163.653v-77.651H101.789l-.02,138.002h77.882c6.305-30.237,30.113-54.046,60.351-60.351h0Z" fill="none"/>
+    <path d="M410.236,54.128h2.783c-.921-.079-1.848-.126-2.783-.126v.126Z" fill="none"/>
+    <path d="M272.001,283.129c-4.986,1.856-10.376,2.875-16,2.875-19.74,0-36.612-12.501-43.125-30l-17.538-10.381-15.688,10.381c6.305,30.237,30.113,54.046,60.351,60.351v101.043c2.475,2.78,7.315,8.909,10.12,13.589h21.88v-147.858Z" fill="#4285f4"/>
+    <path d="M410.236,54.002H101.789c-.926,0-1.841.048-2.747.126h311.194v-.126Z" fill="#ea4335"/>
+    <polygon points="410.236 224.004 410.236 86.002 410.217 224.004 410.236 224.004" fill="#ea4335"/>
+    <path d="M272.001,430.987c-14.771-5.881-26.887-10.879-32-13.589-43.185-21.008-136.084-76.047-138.18-161.394l-16.049-12.031-15.98,12.031c.589,30.784,10.447,60.509,29.324,88.402,15.137,22.364,36.079,43.546,62.246,62.956,41.62,30.873,82.778,47.216,88.456,49.396,1.687.724,3.703,1.239,6.024,1.239,1.959,0,4.137-.367,6.516-1.287,1.173-.454,4.572-1.795,9.642-4.012,6.147-2.688,14.756-6.667,24.845-11.918-8.598-3.374-17.087-6.706-24.845-9.795v.002Z" fill="#fbbc04"/>
+    <path d="M212.876,256.004c-1.856-4.986-2.875-10.376-2.875-16,0-25.365,20.635-46,46-46,19.74,0,36.612,12.501,43.125,30h33.225c-6.305-30.237-30.113-54.046-60.351-60.351v-77.651h138.235v-31.874H99.042c-16.361,1.399-29.251,15.154-29.253,31.87l-.024,167.071c0,.979.01,1.957.029,2.935h143.083,0ZM101.789,86.002h138.212v77.651c-30.237,6.305-54.046,30.113-60.351,60.351h-77.882l.02-138.002h0Z" fill="#ea4335"/>
+  </g>
+    </symbol>
+    <symbol id="icon-security" viewBox="0 0 512 512">
+      <!-- Generator: Adobe Illustrator 29.2.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 116)  -->
+  <g id="bounding_box">
+    <rect width="512" height="512" fill="none"/>
+  </g>
+  <g id="art">
+    <path d="M256.004,287.542c-43.08,0-78.128-35.065-78.128-78.167s35.048-78.167,78.128-78.167,78.129,35.065,78.129,78.167-35.049,78.167-78.129,78.167ZM256.004,163.208c-25.435,0-46.128,20.71-46.128,46.167s20.693,46.167,46.128,46.167,46.129-20.71,46.129-46.167-20.693-46.167-46.129-46.167h0Z" fill="#4285f4"/>
+    <path d="M153.505,376.416c-.752,0-1.511-.053-2.276-.162-8.748-1.245-14.83-9.347-13.584-18.096,4.021-28.244,18.11-54.191,39.672-73.062,21.776-19.059,49.72-29.555,78.682-29.555,8.837,0,16,7.163,16,16s-7.163,16-16,16c-21.207,0-41.666,7.684-57.607,21.636-15.801,13.828-26.123,32.825-29.066,53.492-1.137,7.982-7.983,13.746-15.819,13.746h-.002Z" fill="#9aa0a6"/>
+    <path d="M358.493,376.427c-7.838,0-14.685-5.764-15.82-13.748-2.94-20.669-13.262-39.668-29.063-53.499-15.941-13.953-36.401-21.638-57.61-21.638-8.837,0-16-7.163-16-16s7.163-16,16-16c28.964,0,56.909,10.497,78.687,29.559,21.562,18.873,35.65,44.823,39.669,73.07,1.244,8.749-4.839,16.85-13.587,18.095-.765.108-1.523.161-2.274.161h-.002Z" fill="#4285f4"/>
+    <path d="M256.004,287.542c-43.08,0-78.128-35.065-78.128-78.167s35.048-78.167,78.128-78.167v32c-25.435,0-46.128,20.71-46.128,46.167s20.693,46.167,46.128,46.167v32Z" fill="#9aa0a6"/>
+    <path d="M437.95,151.09c-.01-.13-.03-.26-.04-.39-.02-.18-.04-.37-.07-.55-.05-.37-.12-.74-.19-1.1-.08-.36-.17-.72-.27-1.07-.15-.53-.33-1.05-.54-1.56-.06-.15-.12-.3-.18-.44-.23-.55-.5-1.08-.8-1.59-.08-.14-.16-.28-.25-.42-.19-.31-.4-.61-.61-.91-.21-.29-.42-.57-.65-.85l-.02-.02c-.23-.28-.47-.55-.72-.81-.01-.01-.02-.02-.02-.02-.19-.21-.39-.41-.6-.6-.27-.26-.55-.5-.83-.73-.13-.11-.26-.21-.39-.31-.14-.11-.28-.22-.42-.31-.13-.1-.25-.19-.38-.28-.33-.22-.67-.43-1.02-.62-.21-.13-.41-.24-.63-.35-.13-.07-.25-.13-.38-.19l-137.13-68.47-.07-.03-28.59-14.28c-4.17-2.09-9.03-2.24-13.3-.46-.33.14-.66.29-1,.46l-166,82.88c-5.42,2.71-8.85,8.26-8.85,14.32v103.13c0,44.24,21.16,86.5,56.59,113.04l98.72,73.94v.01l17.1,12.8c1.43,1.07,2.99,1.87,4.6,2.39.61.21,1.23.37,1.85.49.78.16,1.57.25,2.35.29.28.01.55.02.8.02.3,0,.59-.01.89-.03.21-.01.41-.02.62-.04.42-.04.85-.1,1.27-.18.25-.04.5-.09.74-.15.07-.01.15-.03.22-.04.01,0,.02-.01.02-.01.24-.06.48-.12.71-.19.26-.07.52-.15.78-.25.3-.11.61-.22.91-.35h.01c.28-.11.55-.24.82-.37.59-.28,1.17-.61,1.73-.99.18-.11.37-.23.54-.36.11-.07.21-.15.32-.23l115.82-86.75c35.43-26.54,56.59-68.8,56.59-113.04v-103.13c0-.44-.02-.87-.05-1.3h0ZM406,255.52c0,34.21-16.37,66.9-43.78,87.43l-106.22,79.56-106.22-79.56c-27.41-20.53-43.78-53.22-43.78-87.43v-93.24l150-74.9,150,74.9v93.24h0Z" fill="#9aa0a6"/>
+    <path d="M268.81,452.09c-.94,1.25-2.03,2.33-3.22,3.22-.11.08-.21.16-.32.23-.17.13-.36.25-.54.36-.56.38-1.14.71-1.73.99-.27.13-.54.26-.82.37h-.01c-.3.13-.61.24-.91.35-.26.09-.52.17-.78.25-.23.07-.47.13-.71.19,0,0-.01.01-.02.01-.07.01-.15.03-.22.04-.24.06-.49.11-.74.15-.42.08-.85.14-1.27.18-.21.02-.41.03-.62.04-.3.02-.59.03-.89.03-.25,0-.52-.01-.8-.02-.78-.04-1.57-.13-2.35-.29-.62-.12-1.24-.28-1.85-.49-1.61-.52-3.17-1.32-4.6-2.39l-17.1-12.8v-.01l-98.72-73.94c-35.43-26.54-56.59-68.8-56.59-113.04v-103.13c0-6.06,3.43-11.61,8.85-14.32L248.85,55.19c.34-.17.67-.32,1-.46,4.27-1.78,9.13-1.63,13.3.46l28.59,14.28.07.03-35.81,17.88-150,74.9v93.24c0,34.21,16.37,66.9,43.78,87.43l106.22,79.56,9.59,7.18c7.07,5.3,8.51,15.33,3.22,22.4h0Z" fill="#4285f4"/>
+    <path d="M438,152.39v103.13c0,44.24-21.16,86.5-56.59,113.04l-115.82,86.75c-.11.08-.21.16-.32.23-.17.13-.36.25-.54.36-.56.38-1.14.71-1.73.99-.27.13-.54.26-.82.37h-.01c-.3.13-.61.24-.91.35-.26.1-.52.18-.78.25-.23.07-.47.13-.71.19,0,0-.01.01-.02.01-.32.07-.64.14-.96.19-.42.08-.85.14-1.27.18-.21.02-.41.03-.62.04-.3.02-.59.03-.89.03-.25,0-.52-.01-.8-.02-.78-.04-1.57-.13-2.35-.29-.62-.12-1.24-.28-1.85-.49-1.61-.52-3.17-1.32-4.6-2.39l-17.1-12.8v-.01l26.69-19.99,106.22-79.56c27.41-20.53,43.78-53.22,43.78-87.43v-103.13c0-8.84,7.16-16,16-16,2.49,0,4.84.57,6.94,1.58.13.06.25.12.38.19.22.11.42.22.63.35.35.19.69.4,1.02.62.13.09.25.18.38.28.14.09.28.2.42.31.13.1.26.2.39.31.28.23.56.47.83.73.21.19.41.39.6.6,0,0,.01.01.02.02.25.26.49.53.72.81l.02.02c.23.28.44.56.65.85.21.3.42.6.61.91.09.14.17.28.25.42.3.51.57,1.04.8,1.59.06.14.12.29.18.44.21.51.39,1.03.54,1.56.1.35.19.71.27,1.07.07.36.14.73.19,1.1.03.18.05.37.07.55.01.13.03.26.04.39.03.43.05.86.05,1.3h0Z" fill="#9aa0a6"/>
+  </g>
+    </symbol>
+    <symbol id="icon-vertex_ai" viewBox="0 0 512 512">
+      <!-- Generator: Adobe Illustrator 29.1.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 142)  -->
+  <g id="bounding_box">
+    <rect width="512" height="512" fill="none"/>
+  </g>
+  <g id="art">
+    <path d="M128,244.99c-8.84,0-16-7.16-16-16v-95.97c0-8.84,7.16-16,16-16s16,7.16,16,16v95.97c0,8.84-7.16,16-16,16Z" fill="#ea4335"/>
+    <path d="M256,458c-2.98,0-5.97-.83-8.59-2.5l-186-122c-7.46-4.74-9.65-14.63-4.91-22.09,4.75-7.46,14.64-9.65,22.09-4.91l177.41,116.53,177.41-116.53c7.45-4.74,17.34-2.55,22.09,4.91,4.74,7.46,2.55,17.34-4.91,22.09l-186,122c-2.62,1.67-5.61,2.5-8.59,2.5Z" fill="#fbbc04"/>
+    <path d="M256,388.03c-8.84,0-16-7.16-16-16v-73.06c0-8.84,7.16-16,16-16s16,7.16,16,16v73.06c0,8.84-7.16,16-16,16Z" fill="#34a853"/>
+    <circle cx="128" cy="70" r="16" fill="#ea4335"/>
+    <circle cx="128" cy="292" r="16" fill="#ea4335"/>
+    <path d="M384.23,308.01c-8.82,0-15.98-7.14-16-15.97l-.23-94.01c-.02-8.84,7.13-16.02,15.97-16.03h.04c8.82,0,15.98,7.14,16,15.97l.23,94.01c.02,8.84-7.13,16.02-15.97,16.03h-.04Z" fill="#4285f4"/>
+    <circle cx="384" cy="70" r="16" fill="#4285f4"/>
+    <circle cx="384" cy="134" r="16" fill="#4285f4"/>
+    <path d="M320,220.36c-8.84,0-16-7.16-16-16v-103.02c0-8.84,7.16-16,16-16s16,7.16,16,16v103.02c0,8.84-7.16,16-16,16Z" fill="#fbbc04"/>
+    <circle cx="256" cy="171" r="16" fill="#34a853"/>
+    <circle cx="256" cy="235" r="16" fill="#34a853"/>
+    <circle cx="320" cy="265" r="16" fill="#fbbc04"/>
+    <circle cx="320" cy="329" r="16" fill="#fbbc04"/>
+    <path d="M192,217.36c-8.84,0-16-7.16-16-16v-100.02c0-8.84,7.16-16,16-16s16,7.16,16,16v100.02c0,8.84-7.16,16-16,16Z" fill="#fbbc04"/>
+    <circle cx="192" cy="265" r="16" fill="#fbbc04"/>
+    <circle cx="192" cy="329" r="16" fill="#fbbc04"/>
+  </g>
+    </symbol>
+    <symbol id="icon-vpc" viewBox="0 0 256 256">
+      <polygon points="68,24 188,24 248,128 188,232 68,232 8,128" fill="#4285F4"/>
+  <polygon points="188,24 248,128 188,232 128,128" fill="#3367D6" opacity="0.28"/>
+  <polygon points="68,24 188,24 128,128 8,128" fill="#5E97F6" opacity="0.18"/>
+  <g transform="translate(68, 68) scale(5.0)">
+    <path d="M13 22h8v-7h-3v-4h-5V9h3V2H8v7h3v2H6v4H3v7h8v-7H8v-2h8v2h-3v7zM10 7V4h4v3h-4zM9 17v3H5v-3h4zm10 0v3h-4v-3h4z" fill="#FFFFFF"/>
+  </g>
+    </symbol>
+  
+    <symbol id="icon-user" viewBox="0 0 512 512">
+      <circle cx="256" cy="176" r="72" fill="#f1f3f4" stroke="#5f6368" stroke-width="28"/>
+  <path d="M112,400c0-79.5,64.5-144,144-144s144,64.5,144,144" fill="none" stroke="#5f6368" stroke-width="28" stroke-linecap="round"/>
+    </symbol>
+
+    <marker id="arrow-D93025" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#D93025"/>
+    </marker>
+    <marker id="arrow-5F6368" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#5F6368"/>
+    </marker>
+  </defs>
+  <rect width="1400" height="730" fill="#FFFFFF"/>
+  <text x="25" y="42" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="18.5" font-weight="bold" fill="#202124">Figure 4. Deterministic Egress Packet Flow via PSC Network Attachment, ACT (ALL_TRAFFIC) &amp; Cloud NAT (/32)</text>
+  <rect x="25" y="65" width="1350" height="645" rx="8" ry="8" fill="#F6F6F6" stroke="none"/>
+  <text x="39" y="88" text-anchor="start" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="bold" fill="#595959">Google Cloud — Step-by-Step Packet Routing from Google Managed Tenant VPC into Customer VPC and Out to AWS</text>
+  <rect x="45" y="105" width="405" height="580" rx="8" ry="8" fill="#E2EFFD" stroke="none"/>
+  <text x="59" y="128" text-anchor="start" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1967D2">Phase 1. Google Managed Tenant Runtime</text>
+  <rect x="59" y="141" width="377" height="530" rx="8" ry="8" fill="#C9DAF8" stroke="none"/>
+  <text x="247.5" y="162" text-anchor="middle" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="10.5" font-weight="bold" fill="#1967D2">GEMINI ENTERPRISE &amp; EGRESS AGENT GATEWAY</text>
+  <rect x="495" y="105" width="410" height="580" rx="8" ry="8" fill="#D9EAD3" stroke="none"/>
+  <text x="509" y="128" text-anchor="start" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="bold" fill="#38761D">Phase 2. Customer VPC Egress Hub (us-central1)</text>
+  <rect x="509" y="141" width="382" height="530" rx="8" ry="8" fill="#C2E0B8" stroke="none"/>
+  <text x="700.0" y="162" text-anchor="middle" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="10.5" font-weight="bold" fill="#38761D">PSC NETWORK ATTACHMENT · /26 SUBNET · CLOUD NAT</text>
+  <rect x="950" y="105" width="405" height="580" rx="8" ry="8" fill="#FFF2CC" stroke="none"/>
+  <text x="964" y="128" text-anchor="start" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="bold" fill="#E69138">Phase 3. AWS Target MCP Environment</text>
+  <rect x="964" y="141" width="377" height="530" rx="8" ry="8" fill="#FFE599" stroke="none"/>
+  <text x="1152.5" y="162" text-anchor="middle" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="10.5" font-weight="bold" fill="#E69138">CLOUD ARMOR / AWS SECURITY GROUP &amp; FASTMCP</text>
+  <g id="p1-1">
+    <rect x="78" y="185" width="340" height="82" rx="8" ry="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" filter="url(#card-shadow)"/>
+    <use href="#icon-vertex_ai" x="88" y="208.0" width="36" height="36"/>
+    <text x="132" y="221.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="11.2" font-weight="bold" fill="#202124">1. Gemini Enterprise Tool Invocation</text>
+    <text x="132" y="239.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.8" fill="#5F6368">(User asks for Store Inventory or Order Notes)</text>
+  </g>
+  <g id="p1-2">
+    <rect x="78" y="320" width="340" height="82" rx="8" ry="8" fill="#F8FAFD" stroke="#1967D2" stroke-width="2" filter="url(#card-shadow)"/>
+    <use href="#icon-security" x="88" y="343.0" width="36" height="36"/>
+    <text x="132" y="356.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="11.2" font-weight="bold" fill="#1967D2">2. Egress Agent Gateway (Envoy Proxy)</text>
+    <text x="132" y="374.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.8" fill="#5F6368">(Checks IAP roles/iap.egressor &amp; Registry Host)</text>
+  </g>
+  <g id="p1-3">
+    <rect x="78" y="455" width="340" height="82" rx="8" ry="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" filter="url(#card-shadow)"/>
+    <use href="#icon-integration" x="88" y="478.0" width="36" height="36"/>
+    <text x="132" y="491.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="11.2" font-weight="bold" fill="#202124">3. ACT (vpcEgress: ALL_TRAFFIC)</text>
+    <text x="132" y="509.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.8" fill="#5F6368">(Steers all outbound MCP packets to PSC-I NIC)</text>
+  </g>
+  <g id="p2-1">
+    <rect x="530" y="185" width="340" height="82" rx="8" ry="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" filter="url(#card-shadow)"/>
+    <use href="#icon-psc" x="540" y="208.0" width="36" height="36"/>
+    <text x="584" y="221.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="11.2" font-weight="bold" fill="#202124">4. PSC Network Attachment Entry</text>
+    <text x="584" y="239.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.8" fill="#5F6368">(Bridges Google Tenant NIC into Customer VPC)</text>
+  </g>
+  <g id="p2-2">
+    <rect x="530" y="320" width="340" height="82" rx="8" ry="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" filter="url(#card-shadow)"/>
+    <use href="#icon-vpc" x="540" y="343.0" width="36" height="36"/>
+    <text x="584" y="356.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="11.2" font-weight="bold" fill="#202124">5. Customer PSC-I Subnet (10.250.10.0/26)</text>
+    <text x="584" y="374.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.8" fill="#5F6368">(Packet receives Customer VPC Private IPv4)</text>
+  </g>
+  <g id="p2-3">
+    <rect x="530" y="455" width="340" height="82" rx="8" ry="8" fill="#F8FAFD" stroke="#1967D2" stroke-width="2" filter="url(#card-shadow)"/>
+    <use href="#icon-router" x="540" y="478.0" width="36" height="36"/>
+    <text x="584" y="491.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="11.2" font-weight="bold" fill="#1967D2">6. Cloud Router &amp; Cloud NAT (Manual IP)</text>
+    <text x="584" y="509.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.8" fill="#5F6368">(SNATs Source IP to single Static IP /32)</text>
+  </g>
+  <g id="p3-1">
+    <rect x="982" y="185" width="340" height="82" rx="8" ry="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" filter="url(#card-shadow)"/>
+    <use href="#icon-firewall" x="992" y="208.0" width="36" height="36"/>
+    <text x="1036" y="221.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="11.2" font-weight="bold" fill="#202124">7. Cloud Armor / AWS Security Group</text>
+    <text x="1036" y="239.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.8" fill="#5F6368">(Verifies Source IP == Static /32 NAT IP &amp; WAF)</text>
+  </g>
+  <g id="p3-2">
+    <rect x="982" y="320" width="340" height="82" rx="8" ry="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" filter="url(#card-shadow)"/>
+    <use href="#icon-aws_mcp" x="992" y="343.0" width="36" height="36"/>
+    <text x="1036" y="356.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="11.2" font-weight="bold" fill="#202124">8. FastMCP JSON-RPC 2.0 Execution</text>
+    <text x="1036" y="374.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.8" fill="#5F6368">(POST /inventory/mcp or /oms/mcp over TLS 1.3)</text>
+  </g>
+  <g id="p3-3">
+    <rect x="982" y="455" width="340" height="82" rx="8" ry="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" filter="url(#card-shadow)"/>
+    <use href="#icon-scc" x="992" y="478.0" width="36" height="36"/>
+    <text x="1036" y="491.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="11.2" font-weight="bold" fill="#202124">9. Inline Model Armor &amp; SDP Inspection</text>
+    <text x="1036" y="509.0" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.8" fill="#5F6368">(Scans MCP response before returning to GE LLM)</text>
+  </g>
+  <path d="M 248.0,267.0 L 248.0,320.0" fill="none" stroke="#1967D2" stroke-width="1.8" marker-end="url(#arrow-1967D2)"/>
+  <path d="M 248.0,402.0 L 248.0,455.0" fill="none" stroke="#1967D2" stroke-width="1.8" marker-end="url(#arrow-1967D2)"/>
+  <path d="M 418.0,496.0 L 472.0,496.0 L 472.0,226.0 L 530.0,226.0" fill="none" stroke="#38761D" stroke-width="1.8" marker-end="url(#arrow-38761D)"/>
+  <path d="M 700.0,267.0 L 700.0,320.0" fill="none" stroke="#38761D" stroke-width="1.8" marker-end="url(#arrow-38761D)"/>
+  <path d="M 700.0,402.0 L 700.0,455.0" fill="none" stroke="#38761D" stroke-width="1.8" marker-end="url(#arrow-38761D)"/>
+  <path d="M 870.0,496.0 L 926.0,496.0 L 926.0,226.0 L 982.0,226.0" fill="none" stroke="#E69138" stroke-width="1.8" marker-end="url(#arrow-E69138)"/>
+  <path d="M 1152.0,267.0 L 1152.0,320.0" fill="none" stroke="#E69138" stroke-width="1.8" marker-end="url(#arrow-E69138)"/>
+  <path d="M 1152.0,402.0 L 1152.0,455.0" fill="none" stroke="#E69138" stroke-width="1.8" marker-end="url(#arrow-E69138)"/>
+  <rect x="184.2" y="285.0" width="127.6" height="17" rx="4" ry="4" fill="#FFFFFF" stroke="#1967D2" stroke-width="0.8" opacity="0.97"/>
+  <text x="248.0" y="297.0" text-anchor="middle" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#1967D2">Invoke Managed URL</text>
+  <rect x="196.6" y="420.0" width="102.8" height="17" rx="4" ry="4" fill="#FFFFFF" stroke="#1967D2" stroke-width="0.8" opacity="0.97"/>
+  <text x="248.0" y="432.0" text-anchor="middle" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#1967D2">IAP Authorized</text>
+  <rect x="426.8" y="284.5" width="90.4" height="17" rx="4" ry="4" fill="#FFFFFF" stroke="#38761D" stroke-width="0.8" opacity="0.97"/>
+  <text x="472.0" y="296.5" text-anchor="middle" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#38761D">PSC-I Tunnel</text>
+  <rect x="648.6" y="285.0" width="102.8" height="17" rx="4" ry="4" fill="#FFFFFF" stroke="#38761D" stroke-width="0.8" opacity="0.97"/>
+  <text x="700.0" y="297.0" text-anchor="middle" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#38761D">10.250.10.x IP</text>
+  <rect x="620.7" y="420.0" width="158.6" height="17" rx="4" ry="4" fill="#FFFFFF" stroke="#38761D" stroke-width="0.8" opacity="0.97"/>
+  <text x="700.0" y="432.0" text-anchor="middle" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#38761D">Default Route 0.0.0.0/0</text>
+  <rect x="865.3" y="284.5" width="121.4" height="17" rx="4" ry="4" fill="#FFFFFF" stroke="#E69138" stroke-width="0.8" opacity="0.97"/>
+  <text x="926.0" y="296.5" text-anchor="middle" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#E69138">Static /32 NAT IP</text>
+  <rect x="1094.4" y="285.0" width="115.2" height="17" rx="4" ry="4" fill="#FFFFFF" stroke="#E69138" stroke-width="0.8" opacity="0.97"/>
+  <text x="1152.0" y="297.0" text-anchor="middle" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#E69138">HTTP 200 Allowed</text>
+  <rect x="1097.5" y="420.0" width="109.0" height="17" rx="4" ry="4" fill="#FFFFFF" stroke="#E69138" stroke-width="0.8" opacity="0.97"/>
+  <text x="1152.0" y="432.0" text-anchor="middle" font-family="Google Sans, DejaVu Sans, Arial, sans-serif" font-size="9.5" font-weight="bold" fill="#E69138">Return JSON-RPC</text>
+</svg>

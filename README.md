@@ -19,13 +19,27 @@
    - **Layer 2 (`IAP Request Authz` — `UAP V2` / `IAP V1`)**: `Agent Registry`의 `destructiveHint == true` 주석을 실시간 평가하여, 에이전트 코드 수정 없이 중앙에서 파괴적 도구(`cancel_all_store_orders`, `override_product_unit_price`) 호출을 `HTTP 403`으로 즉시 차단합니다.
    - **Layer 3 (`Model Armor` & `SDP Content Policy`)**: `Gemini Enterprise Assistant`(`locations/us`) 및 `Agent Gateway` 인라인 `CONTENT_AUTHZ`(`locations/us-central1`)에서 간접 프롬프트 인젝션(`Indirect Prompt Injection`)과 민감정보(`KOREA_RRN` 주민등록번호, 유효 `Luhn Checksum` 신용카드 번호)를 탐지·차단하고 `BigQuery` (`ContentPolicyActionLog`)에 감사 증적을 기록합니다.
 
+![Figure 1. Multi-Cloud AWS MCP & Gemini Enterprise 5-Layer Zero-Trust Governance Architecture](docs/diagrams/diagram-1-e2e-5layer-governance-architecture.svg)
+
+> **GCP Standard Architecture Diagrams (`SVG` · `2x Retina PNG` · `Draw.io XML`)**:
+> - **Master 6-Tab Draw.io Workbook**: [`docs/diagrams/ge-agent-gateway-mcp-all-diagrams.drawio`](docs/diagrams/ge-agent-gateway-mcp-all-diagrams.drawio) *(Open in [diagrams.net / draw.io](https://app.diagrams.net))*
+> - **Figure 1 (`E2E 5-Layer Architecture`)**: [`SVG`](docs/diagrams/diagram-1-e2e-5layer-governance-architecture.svg) | [`2x PNG`](docs/diagrams/diagram-1-e2e-5layer-governance-architecture.png) | [`Draw.io`](docs/diagrams/diagram-1-e2e-5layer-governance-architecture.drawio)
+> - **Figure 2 (`Challenges vs. 5-Layer Solutions`)**: [`SVG`](docs/diagrams/diagram-2-problems-vs-5layer-solutions.svg) | [`2x PNG`](docs/diagrams/diagram-2-problems-vs-5layer-solutions.png) | [`Draw.io`](docs/diagrams/diagram-2-problems-vs-5layer-solutions.drawio)
+> - **Figure 3 (`7-Step Immutable Provisioning Order`)**: [`SVG`](docs/diagrams/diagram-3-immutable-provisioning-sequence.svg) | [`2x PNG`](docs/diagrams/diagram-3-immutable-provisioning-sequence.png) | [`Draw.io`](docs/diagrams/diagram-3-immutable-provisioning-sequence.drawio)
+> - **Figure 4 (`PSC-I & Cloud NAT /32 Packet Flow`)**: [`SVG`](docs/diagrams/diagram-4-psci-act-cloud-nat-packet-flow.svg) | [`2x PNG`](docs/diagrams/diagram-4-psci-act-cloud-nat-packet-flow.png) | [`Draw.io`](docs/diagrams/diagram-4-psci-act-cloud-nat-packet-flow.drawio)
+> - **Figure 5 (`Dual-Location Model Armor & SDP`)**: [`SVG`](docs/diagrams/diagram-5-dual-model-armor-sdp-inspection.svg) | [`2x PNG`](docs/diagrams/diagram-5-dual-model-armor-sdp-inspection.png) | [`Draw.io`](docs/diagrams/diagram-5-dual-model-armor-sdp-inspection.drawio)
+> - **Figure 6 (`AWS Hybrid Egress Paths A & B`)**: [`SVG`](docs/diagrams/diagram-6-aws-hybrid-egress-paths.svg) | [`2x PNG`](docs/diagrams/diagram-6-aws-hybrid-egress-paths.png) | [`Draw.io`](docs/diagrams/diagram-6-aws-hybrid-egress-paths.drawio)
+
+<details>
+<summary><b>View Editable Mermaid Source (Google Cloud Standard Palette)</b></summary>
+
 ```mermaid
 flowchart TB
-    classDef userLayer fill:#F8F9FA,stroke:#5F6368,stroke-width:2px,color:#202124
-    classDef geLayer fill:#FFFFFF,stroke:#4285F4,stroke-width:2px,color:#202124
-    classDef agwLayer fill:#FFFFFF,stroke:#34A853,stroke-width:2px,color:#202124
-    classDef secLayer fill:#FFFFFF,stroke:#EA4335,stroke-width:2px,color:#202124
-    classDef awsLayer fill:#FFFFFF,stroke:#FBBC04,stroke-width:2px,color:#202124
+    classDef userLayer fill:#F8F9FA,stroke:#5F6368,stroke-width:2px,color:#202124,rx:8px,ry:8px
+    classDef geLayer fill:#FFFFFF,stroke:#4285F4,stroke-width:2px,color:#202124,rx:8px,ry:8px
+    classDef agwLayer fill:#FFFFFF,stroke:#34A853,stroke-width:2px,color:#202124,rx:8px,ry:8px
+    classDef secLayer fill:#FFFFFF,stroke:#EA4335,stroke-width:2px,color:#202124,rx:8px,ry:8px
+    classDef awsLayer fill:#FFFFFF,stroke:#FBBC04,stroke-width:2px,color:#202124,rx:8px,ry:8px
 
     subgraph USER_ENV["1. Enterprise User / Lab Participant Environment"]
         direction LR
@@ -53,7 +67,7 @@ flowchart TB
         direction LR
         AREG["<b>Agent Registry (us-central1)</b><br/>• cymbal-store-inventory-mcp (ToolSpec)<br/>• cymbal-oms-order-mcp (destructiveHint)<br/>• googleapis (Consolidated Core FQDNs)"]:::agwLayer
         ACT["<b>Agent Connectivity Template (ACT)</b><br/>(vpcEgress: ALL_TRAFFIC + dnsPeeringConfig)"]:::agwLayer
-        AGW["<b>Egress Agent Gateway (us-central1)</b><br/>(1-Step Immutable Binding · AGENT_TO_ANYWHERE)"]:::agwLayer
+        AGW["<b>Egress Agent Gateway (us-central1)</b><br/>(1-Step Immutable Binding · CLIENT_TO_AGENT)"]:::agwLayer
         PSC_NA["<b>PSC Network Attachment & Subnet (/26)</b><br/>(ge-agw-psci-subnet-usc1 + Cloud NAT Static IP)"]:::agwLayer
         AREG --> AGW
         ACT --> AGW
@@ -86,6 +100,8 @@ flowchart TB
     IAP_UAP -.->|"Decision Log (200/403)"| BQ_AUDIT
 ```
 
+</details>
+
 ---
 
 ## 2. `Repository` 디렉토리 구조 (`Repository Layout`)
@@ -100,10 +116,11 @@ ge-agent-gateway-mcp/
 ├── pyproject.toml                                 # Python 의존성 정의 (uv / pip 호환)
 ├── .env.example                                   # 환경변수 설정 템플릿
 │
-├── docs/                                          # [Qwiklabs 스타일 실습 지침서 & Console UI 매뉴얼]
+├── docs/                                          # [Qwiklabs 스타일 실습 지침서, Console UI 매뉴얼 & GCP 표준 다이어그램]
 │   ├── QWIKLABS_HANDS_ON_LAB_GUIDE_KR.md          # Qwiklabs 스타일 6-Task Step-by-Step 실습 가이드
-│   ├── CONSOLE_UI_CLICK_BY_CLICK_GUIDE_KR.md      # 스크립트 없이 GCP Console 웹 메뉴만으로 구성하는 가이드
-│   └── AWS_MCP_FIREWALL_AND_NAT_INTEGRATION.md    # 실제 AWS MCP Server 연결 시 Security Group / WAF / TLS 가이드
+│   ├── CONSOLE_UI_CLICK_BY_CLICK_GUIDE_KR.md      # 스크립트 없이 GCP Console 웹 UI 메뉴만으로 구성하는 가이드
+│   ├── AWS_MCP_FIREWALL_AND_NAT_INTEGRATION.md    # 실제 AWS MCP Server 연결 시 Security Group / WAF / TLS 가이드
+│   └── diagrams/                                  # GCP 표준 아키텍처 다이어그램 6종 (.svg, 2x .png, .drawio & 통합 워크북)
 │
 ├── mock_aws_mcp_servers/                          # [Simulated AWS FastMCP Server 2종 — Cloud Run / AWS 배포 호환]
 │   ├── Dockerfile                                 # FastMCP StreamableHTTP 멀티 엔드포인트 컨테이너

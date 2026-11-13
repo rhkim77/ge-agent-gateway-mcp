@@ -18,6 +18,12 @@ This lab teaches you **why** each of the 5 governance layers is required and **h
    - **Cloud Armor Edge WAF**: Blocks `SQL Injection (SQLi)`, `Cross-Site Scripting (XSS)`, scanner probes, and volumetric abuse (`HTTP 403 / 429`) before the MCP container parses the `JSON-RPC 2.0` payload.
    - **Sensitive Data Protection (`SDP`)**: Uses `InfoType` detectors (`KOREA_RRN`, `CREDIT_CARD_NUMBER` with `Luhn Checksum` verification, `PHONE_NUMBER`, `EMAIL_ADDRESS`) to redact (`******`) or block sensitive customer PII and write compliance audit records to **BigQuery**.
 
+![Figure 1. Multi-Cloud AWS MCP & Gemini Enterprise 5-Layer Zero-Trust Governance Architecture](./img/diagram-1-e2e-5layer-governance-architecture.png)
+
+![Figure 2. Direct Multi-Cloud MCP Challenges vs. 5-Layer Governance Architecture Solutions](./img/diagram-2-problems-vs-5layer-solutions.png)
+
+![Figure 3. 7-Step Immutable Provisioning Workflow & Region Pinning](./img/diagram-3-immutable-provisioning-sequence.png)
+
 ---
 
 ## Objectives
@@ -127,6 +133,8 @@ Because `Agent Gateway` runs in a Google-managed tenant VPC, you must provision 
 <strong>Architecture Note (ACT Immutability):</strong> The <code>agentConnectivityTemplate</code> field on an <code>AgentGateway</code> resource is immutable after creation. Always provision the PSC Network Attachment and ACT first, then bind the ACT when creating the Egress Agent Gateway.
 </ql-infobox>
 
+![Figure 4. Deterministic Egress Packet Flow via PSC Network Attachment, ACT (ALL_TRAFFIC) & Cloud NAT (/32)](./img/diagram-4-psci-act-cloud-nat-packet-flow.png)
+
 ### Method A: Configure in the Google Cloud Console UI
 1. **Create PSC-I Subnet (`/26`)**: Navigate to **VPC network > VPC networks > default > + Add subnet**. Set **Name** = `ge-agw-psci-subnet-usc1`, **Region** = `us-central1`, **IPv4 range** = `10.250.10.0/26`, **Private Google Access** = `On`.
 2. **Reserve Static Egress IP (`/32`)**: Navigate to **VPC network > IP addresses > + Reserve external static IP address**. Set **Name** = `ge-agw-nat-static-ip-usc1`, **Region** = `us-central1`.
@@ -152,6 +160,8 @@ Provision PSC Network Attachment, ACT & Egress Agent Gateway
 - **IAP Request Authorization (`roles/iap.egressor`)**: Ensures only authorized principals can invoke MCP servers through the gateway and blocks `destructiveHint == true` tools.
 - **Model Armor (`locations/us` & `locations/us-central1`)**: Protects Gemini Enterprise prompts/responses (`locations/us`) and inspects external AWS MCP outputs inline at the Agent Gateway (`locations/us-central1`) to stop **Indirect Prompt Injection**.
 - **Sensitive Data Protection (`SDP`)**: Detects and masks `KOREA_RRN`, `CREDIT_CARD_NUMBER` (validated via Luhn checksum), `PHONE_NUMBER`, and `EMAIL_ADDRESS`.
+
+![Figure 5. Dual-Location Model Armor (locations/us & locations/us-central1) & SDP Inline Inspection Architecture](./img/diagram-5-dual-model-armor-sdp-inspection.png)
 
 ### Method A: Configure in the Google Cloud Console UI
 1. **Grant IAP Egress Role**: Navigate to **Security > Identity-Aware Proxy (IAP)**, select the **Agent Registry / MCP Servers** resources in `us-central1`, click **+ Add Principal**, and grant **`IAP-secured Egress App User` (`roles/iap.egressor`)** to your user and Discovery Engine service agent.

@@ -22,51 +22,59 @@
    - **`Cloud Armor Edge WAF`**: `MCP Tool Argument`에 담긴 `SQL Injection (SQLi)`이나 `XSS`, 스캐너 공격을 `MCP Container` 도달 전에 `HTTP 403`으로 차단합니다.
    - **`SDP Content Policy`**: `VIP 고객 클레임` 조회 결과에 포함된 대한민국 주민등록번호(`KOREA_RRN`), 신용카드번호(`CREDIT_CARD_NUMBER` — `Luhn Checksum` 검증), 전화번호(`PHONE_NUMBER`), 이메일(`EMAIL_ADDRESS`)을 정밀 탐지하여 마스킹(`******`)하거나 차단(`BLOCK`)하고, 그 증적을 `BigQuery` 감사 테이블에 자동 기록합니다.
 
+![Figure 1. Multi-Cloud AWS MCP & Gemini Enterprise 5-Layer Zero-Trust Governance Architecture](diagrams/diagram-1-e2e-5layer-governance-architecture.svg)
+
+> **Editable Diagrams (`SVG` · `2x Retina PNG` · `Draw.io`)**:
+> - **Figure 1 (`5-Layer Governance Architecture`)**: [`SVG`](diagrams/diagram-1-e2e-5layer-governance-architecture.svg) | [`2x PNG`](diagrams/diagram-1-e2e-5layer-governance-architecture.png) | [`Draw.io`](diagrams/diagram-1-e2e-5layer-governance-architecture.drawio)
+> - **Figure 3 (`7-Step Immutable Provisioning Workflow`)**: [`SVG`](diagrams/diagram-3-immutable-provisioning-sequence.svg) | [`2x PNG`](diagrams/diagram-3-immutable-provisioning-sequence.png) | [`Draw.io`](diagrams/diagram-3-immutable-provisioning-sequence.drawio)
+> - **Master 6-Tab Draw.io Workbook**: [`ge-agent-gateway-mcp-all-diagrams.drawio`](diagrams/ge-agent-gateway-mcp-all-diagrams.drawio)
+
+![Figure 3. 7-Step Immutable Provisioning Workflow & Region Pinning](diagrams/diagram-3-immutable-provisioning-sequence.svg)
+
+<details>
+<summary><b>View Editable Mermaid Source (Google Cloud Standard Palette)</b></summary>
+
 ```mermaid
 flowchart TD
+    classDef userCard fill:#FFFFFF,stroke:#4285F4,stroke-width:2px,color:#202124,rx:8px,ry:8px
+    classDef secCard fill:#FFFFFF,stroke:#EA4335,stroke-width:2px,color:#202124,rx:8px,ry:8px
+    classDef govCard fill:#FFFFFF,stroke:#34A853,stroke-width:2px,color:#202124,rx:8px,ry:8px
+    classDef awsCard fill:#FFFFFF,stroke:#FBBC04,stroke-width:2px,color:#202124,rx:8px,ry:8px
+
     subgraph UserLayer["1. Enterprise User & Gemini Enterprise (global / us)"]
-        User(["Enterprise User<br/>(Web UI / streamAssist API)"])
-        GE["Gemini Enterprise App<br/>(Enterprise Edition + Audit Logging)"]
-        SDP["SDP Content Policy &<br/>Model Armor Template (locations/us)"]
+        User["<b>Enterprise User</b><br/>(Web UI / streamAssist API)"]:::userCard
+        GE["<b>Gemini Enterprise App</b><br/>(Enterprise Edition + Audit Logging)"]:::userCard
+        SDP["<b>SDP Content Policy & Model Armor (us)</b><br/>(KOREA_RRN · Luhn Card Mask/Block)"]:::secCard
     end
 
     subgraph GovernanceLayer["2. Agent Registry & Egress Agent Gateway (us-central1)"]
-        AR["Agent Registry (us-central1)<br/>MCP Server Catalog & Tool Specs"]
-        AGW["Egress Agent Gateway (us-central1)<br/>(ACT Bound + IAP Authz + Inline Model Armor)"]
+        AR["<b>Agent Registry (us-central1)</b><br/>(MCP Server Catalog & Tool Specs)"]:::govCard
+        AGW["<b>Egress Agent Gateway (us-central1)</b><br/>(1-Step ACT Bound + IAP Authz + Inline Model Armor)"]:::govCard
     end
 
     subgraph NetworkLayer["3. Customer VPC Egress Control (us-central1)"]
-        PSCI["PSC Network Attachment<br/>(PSC-I Subnet /26 + ALL_TRAFFIC)"]
-        NAT["Cloud Router & Cloud NAT<br/>(Deterministic Static IP /32)"]
+        PSCI["<b>PSC Network Attachment</b><br/>(PSC-I Subnet 10.250.10.0/26 + ALL_TRAFFIC)"]:::govCard
+        NAT["<b>Cloud Router & Cloud NAT</b><br/>(Deterministic Static IP /32)"]:::govCard
     end
 
     subgraph TargetLayer["4. AWS Target MCP Tier (Simulated or Real AWS)"]
-        CA["Cloud Armor Edge WAF<br/>(SQLi / XSS / Rate Limit)"]
-        MCP1["cymbal-store-inventory-mcp<br/>(/inventory/mcp)"]
-        MCP2["cymbal-oms-order-mcp<br/>(/oms/mcp)"]
+        CA["<b>Google Cloud Armor Edge WAF</b><br/>(Allow /32 NAT IP · SQLi / XSS / Rate Limit)"]:::secCard
+        MCP1["<b>cymbal-store-inventory-mcp</b><br/>(/inventory/mcp · Stock & VIP Claim)"]:::awsCard
+        MCP2["<b>cymbal-oms-order-mcp</b><br/>(/oms/mcp · Orders & Cancel Tool*)"]:::awsCard
     end
 
-    User -->|"Prompt"| GE
+    User -->|"1. Prompt"| GE
     GE <-->|"Inspect & Mask"| SDP
-    GE -->|"Discover"| AR
-    GE -->|"Invoke MCP"| AGW
-    AGW -->|"PSC-I"| PSCI
-    PSCI -->|"Route"| NAT
-    NAT -->|"HTTPS (/32 IP)"| CA
+    GE -->|"2. Discover UUID"| AR
+    GE -->|"3. Invoke MCP"| AGW
+    AGW -->|"4. PSC-I"| PSCI
+    PSCI -->|"5. Route"| NAT
+    NAT -->|"6. HTTPS (/32 IP)"| CA
     CA -->|"JSON-RPC"| MCP1
     CA -->|"JSON-RPC"| MCP2
-
-    style User fill:#FFFFFF,stroke:#4285F4,stroke-width:2px,color:#202124
-    style GE fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px,color:#202124
-    style SDP fill:#FEF7E0,stroke:#FBBC04,stroke-width:2px,color:#202124
-    style AR fill:#E6F4EA,stroke:#34A853,stroke-width:2px,color:#202124
-    style AGW fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px,color:#202124
-    style PSCI fill:#F8F9FA,stroke:#5F6368,stroke-width:2px,color:#202124
-    style NAT fill:#F8F9FA,stroke:#5F6368,stroke-width:2px,color:#202124
-    style CA fill:#FCE8E6,stroke:#EA4335,stroke-width:2px,color:#202124
-    style MCP1 fill:#FFF8E1,stroke:#F9AB00,stroke-width:2px,color:#202124
-    style MCP2 fill:#FFF8E1,stroke:#F9AB00,stroke-width:2px,color:#202124
 ```
+
+</details>
 
 ---
 
